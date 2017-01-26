@@ -12,5 +12,10 @@
     "minimum-stability": "dev",
     "require": {
         "googleads/googleads-php-lib": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "EasyAdwords\\": "src/"
+        }
     }
 }
