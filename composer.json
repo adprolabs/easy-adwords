@@ -1,0 +1,16 @@
+{
+    "name": "karakanb/easy-adwords",
+    "description": "A wrapper library to use new AdWords PHP Client library easily.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Burak Karakan",
+            "email": "burak.karakan@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "googleads/googleads-php-lib": "*"
+    }
+}
