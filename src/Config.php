@@ -6,26 +6,26 @@ class Config extends Base {
 
     protected $refreshToken;
     protected $clientCustomerId;
-    protected $configFilePath;
+    protected $adwordsConfigPath;
 
     public function __construct(array $config) {
         $this->refreshToken = $config['refreshToken'];
         $this->clientCustomerId = $config['clientCustomerId'];
-        $this->configFilePath = $config['configFilePath'];
+        $this->adwordsConfigPath = $config['adwordsConfigPath'];
     }
 
     /**
      * @return mixed
      */
-    public function getConfigFilePath() {
-        return $this->configFilePath;
+    public function getAdwordsConfigPath() {
+        return $this->adwordsConfigPath;
     }
 
     /**
-     * @param mixed $configFilePath
+     * @param mixed $adwordsConfigPath
      */
-    public function setConfigFilePath($configFilePath) {
-        $this->configFilePath = $configFilePath;
+    public function setAdwordsConfigPath($adwordsConfigPath) {
+        $this->adwordsConfigPath = $adwordsConfigPath;
     }
 
     /**

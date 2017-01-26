@@ -22,6 +22,13 @@ class Report {
     }
 
     /**
+     * @return mixed
+     */
+    public function getReportHeaders() {
+        return $this->reportHeaders;
+    }
+
+    /**
      * Downloads the raw report as string.
      * @param $reportType
      * @return $this
@@ -29,7 +36,9 @@ class Report {
     protected function downloadRawReport($reportType) {
 
         // Create the auth object.
-        $authObject = new AdWordsAuth($this->config->getRefreshToken(), $this->config->getConfigFilePath());
+        $authObject = new AdWordsAuth($this->config->getRefreshToken(), $this->config->getAdwordsConfigPath());
+
+        // Build the session with the auth object.
         $authObject->buildSession($this->config->getClientCustomerId());
 
         // Create report date range object.
