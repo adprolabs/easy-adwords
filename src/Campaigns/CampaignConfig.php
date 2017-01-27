@@ -3,7 +3,6 @@
 namespace EasyAdwords\Campaigns;
 
 use EasyAdwords\Config;
-use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
 use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
@@ -47,8 +46,6 @@ class CampaignConfig extends Config {
 
         if (isset($config['campaignName'])) {
             $this->campaignName = $config['campaignName'];
-        } else {
-            throw new Exception("Campaign name must be set to create campaign.");
         }
 
         if (isset($config['advertisingChannelType'])) {

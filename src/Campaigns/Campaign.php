@@ -3,6 +3,7 @@
 namespace EasyAdwords\Campaigns;
 
 use EasyAdwords\Auth\AdWordsAuth;
+use Exception;
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
 use Google\AdsApi\AdWords\v201609\cm\Budget;
@@ -47,6 +48,10 @@ class Campaign {
     }
 
     public function create() {
+
+        if (!$this->config->getCampaignName()) {
+            throw new Exception("Campaign name must be set to create campaign.");
+        }
 
         // Create a campaign with given settings.
         $this->campaign->setName($this->config->getCampaignName());
