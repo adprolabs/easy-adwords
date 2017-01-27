@@ -9,9 +9,27 @@ class Config extends Base {
     protected $adwordsConfigPath;
 
     public function __construct(array $config) {
-        $this->refreshToken = $config['refreshToken'];
-        $this->clientCustomerId = $config['clientCustomerId'];
-        $this->adwordsConfigPath = $config['adwordsConfigPath'];
+
+        $this->refreshToken = NULL;
+        $this->clientCustomerId = NULL;
+        $this->adwordsConfigPath = NULL;
+
+        if (isset($config['refreshToken'])) {
+            $this->refreshToken = $config['refreshToken'];
+        } else {
+            throw new \Exception("Refresh token must be set in config array.");
+        }
+
+
+        if (isset($config['clientCustomerId'])) {
+            $this->clientCustomerId = $config['clientCustomerId'];
+        } else {
+            throw new \Exception("Client customer ID must be set in config array.");
+        }
+
+        if (isset($config['adwordsConfigPath'])) {
+            $this->adwordsConfigPath = $config['adwordsConfigPath'];
+        }
     }
 
     /**
