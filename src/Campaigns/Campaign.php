@@ -70,6 +70,7 @@ class Campaign {
         // Set bidding strategy (required).
         $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
         $biddingStrategyConfiguration->setBiddingStrategyType($this->config->getBiddingStrategyType());
+        $campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
 
         // Set network targeting.
         $networkSetting = new NetworkSetting();
