@@ -3,6 +3,7 @@
 namespace EasyAdwords\Campaigns;
 
 use EasyAdwords\Config;
+use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
 use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
