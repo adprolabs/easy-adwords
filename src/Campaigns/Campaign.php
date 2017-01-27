@@ -59,7 +59,7 @@ class Campaign {
         $operations = [];
 
         // Create a campaign with required and optional settings.
-        $campaign = new Google\AdsApi\AdWords\v201609\cm\Campaign();
+        $campaign = new \Google\AdsApi\AdWords\v201609\cm\Campaign();
         $campaign->setName($this->config->getCampaignName());
         $campaign->setAdvertisingChannelType($this->config->getAdvertisingChannelType());
 
