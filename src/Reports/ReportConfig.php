@@ -6,7 +6,6 @@ use EasyAdwords\Config;
 
 class ReportConfig extends Config {
 
-    protected $fields;
     protected $dateStart;
     protected $dateEnd;
     protected $predicates;
@@ -15,12 +14,8 @@ class ReportConfig extends Config {
 
         parent::__construct($config);
 
-        $this->predicates = array();
         $this->fields = array();
 
-        if (isset($config['fields'])) {
-            $this->fields = $config['fields'];
-        }
 
         if (isset($config['dateStart'])) {
             $this->dateStart = $config['dateStart'];
@@ -29,29 +24,6 @@ class ReportConfig extends Config {
         if (isset($config['dateEnd'])) {
             $this->dateEnd = $config['dateEnd'];
         }
-
-        if (isset($config['predicates'])) {
-            if (!is_array($config['predicates'])) {
-                $config['predicates'] = [$config['predicates']];
-            }
-
-            $this->predicates = $config['predicates'];
-        }
-    }
-
-    /**
-     * @param array $fields
-     * @return ReportConfig
-     */
-    public function setFields($fields) {
-        $this->fields = $fields;
-    }
-
-    /**
-     * @return array
-     */
-    public function getFields() {
-        return $this->fields;
     }
 
     /**
@@ -82,24 +54,5 @@ class ReportConfig extends Config {
         $this->dateEnd = $dateEnd;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPredicates() {
-        return $this->predicates;
-    }
 
-    /**
-     * @param mixed $predicates
-     */
-    public function setPredicates($predicates) {
-        $this->predicates = $predicates;
-    }
-
-    /**
-     * @param $predicate
-     */
-    public function addPredicate($predicate) {
-        $this->predicates[] = $predicate;
-    }
 }

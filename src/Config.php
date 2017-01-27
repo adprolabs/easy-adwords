@@ -7,6 +7,8 @@ class Config extends Base {
     protected $refreshToken;
     protected $clientCustomerId;
     protected $adwordsConfigPath;
+    protected $fields;
+    protected $predicates;
 
     public function __construct(array $config) {
 
@@ -20,7 +22,6 @@ class Config extends Base {
             throw new \Exception("Refresh token must be set in config array.");
         }
 
-
         if (isset($config['clientCustomerId'])) {
             $this->clientCustomerId = $config['clientCustomerId'];
         } else {
@@ -30,20 +31,35 @@ class Config extends Base {
         if (isset($config['adwordsConfigPath'])) {
             $this->adwordsConfigPath = $config['adwordsConfigPath'];
         }
+
+        if (isset($config['fields'])) {
+            $this->fields = $config['fields'];
+        }
+
+        if (isset($config['predicates'])) {
+            if (!is_array($config['predicates'])) {
+                $config['predicates'] = [$config['predicates']];
+            }
+
+            $this->predicates = $config['predicates'];
+        }
     }
+
 
     /**
      * @return mixed
      */
-    public function getAdwordsConfigPath() {
-        return $this->adwordsConfigPath;
+    public function getRefreshToken() {
+        return $this->refreshToken;
     }
 
     /**
-     * @param mixed $adwordsConfigPath
+     * @param mixed $refreshToken
+     * @return Config
      */
-    public function setAdwordsConfigPath($adwordsConfigPath) {
-        $this->adwordsConfigPath = $adwordsConfigPath;
+    public function setRefreshToken($refreshToken) {
+        $this->refreshToken = $refreshToken;
+        return $this;
     }
 
     /**
@@ -55,23 +71,65 @@ class Config extends Base {
 
     /**
      * @param mixed $clientCustomerId
+     * @return Config
      */
     public function setClientCustomerId($clientCustomerId) {
         $this->clientCustomerId = $clientCustomerId;
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getRefreshToken() {
-        return $this->refreshToken;
+    public function getAdwordsConfigPath() {
+        return $this->adwordsConfigPath;
     }
 
     /**
-     * @param mixed $refreshToken
+     * @param mixed $adwordsConfigPath
+     * @return Config
      */
-    public function setRefreshToken($refreshToken) {
-        $this->refreshToken = $refreshToken;
+    public function setAdwordsConfigPath($adwordsConfigPath) {
+        $this->adwordsConfigPath = $adwordsConfigPath;
+        return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFields() {
+        return $this->fields;
+    }
+
+    /**
+     * @param mixed $fields
+     * @return Config
+     */
+    public function setFields($fields) {
+        $this->fields = $fields;
+        return $this;
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getPredicates() {
+        return $this->predicates;
+    }
+
+    /**
+     * @param array|mixed $predicates
+     * @return Config
+     */
+    public function setPredicates($predicates) {
+        $this->predicates = $predicates;
+        return $this;
+    }
+
+    /**
+     * @param $predicate
+     */
+    public function addPredicate($predicate) {
+        $this->predicates[] = $predicate;
+    }
 }

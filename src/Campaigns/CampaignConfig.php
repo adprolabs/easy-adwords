@@ -7,6 +7,7 @@ use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
 use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
 use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
 
 class CampaignConfig extends Config {
 
@@ -23,6 +24,7 @@ class CampaignConfig extends Config {
     protected $startDate;
     protected $endDate;
     protected $adServingOptimizationStatus;
+    protected $servingStatus;
 
     public function __construct(array $config) {
         parent::__construct($config);
@@ -40,6 +42,7 @@ class CampaignConfig extends Config {
         $this->startDate = date('Ymd');
         $this->endDate = NULL;
         $this->adServingOptimizationStatus = NULL;
+        $this->servingStatus = ServingStatus::SERVING;
 
         if (isset($config['campaignName'])) {
             $this->campaignName = $config['campaignName'];
@@ -298,6 +301,22 @@ class CampaignConfig extends Config {
      */
     public function setCampaignName($campaignName) {
         $this->campaignName = $campaignName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getServingStatus() {
+        return $this->servingStatus;
+    }
+
+    /**
+     * @param $servingStatus
+     * @return $this
+     */
+    public function setServingStatus($servingStatus) {
+        $this->servingStatus = $servingStatus;
         return $this;
     }
 }
