@@ -1,5 +1,7 @@
 <?php
 
+namespace EasyAdwords\Campaign;
+
 use EasyAdwords\Config;
 use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;

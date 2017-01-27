@@ -1,5 +1,7 @@
 <?php
 
+namespace EasyAdwords\Campaign;
+
 use EasyAdwords\Auth\AdWordsAuth;
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
