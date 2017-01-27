@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyAdwords\Campaign;
+namespace EasyAdwords\Campaigns;
 
 use EasyAdwords\Config;
 use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
@@ -30,7 +30,7 @@ class CampaignConfig extends Config {
         $this->campaignName = NULL;
         $this->advertisingChannelType = AdvertisingChannelType::SEARCH;
         $this->status = CampaignStatus::PAUSED;
-        $this->budget = 50000000;
+        $this->budget = 50;
         $this->budgetName = "EasyAdwords Budget #" . uniqid();
         $this->biddingStrategyType = BiddingStrategyType::MANUAL_CPC;
         $this->budgetDeliveryMethod = BudgetBudgetDeliveryMethod::STANDARD;

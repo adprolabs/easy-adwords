@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyAdwords\Campaign;
+namespace EasyAdwords\Campaigns;
 
 use EasyAdwords\Auth\AdWordsAuth;
 use Google\AdsApi\AdWords\AdWordsServices;
