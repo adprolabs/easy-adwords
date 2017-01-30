@@ -101,7 +101,7 @@ class Campaign {
         $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
 
         if($this->config->getCampaignId()) {
-            $selector->setPredicates([new Predicate('Id', PredicateOperator::EQUALS, $this->config->getCampaignId())]);
+            $selector->setPredicates([new Predicate('Id', PredicateOperator::EQUALS, [$this->config->getCampaignId()])]);
         }
 
 
