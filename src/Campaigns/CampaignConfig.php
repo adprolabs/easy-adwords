@@ -7,6 +7,8 @@ use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
 use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
 use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
 use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
 
 class CampaignConfig extends Config {
@@ -52,6 +54,7 @@ class CampaignConfig extends Config {
 
         if (isset($config['campaignId'])) {
             $this->campaignId = $config['campaignId'];
+            $this->addPredicate(new Predicate('Id', PredicateOperator::EQUALS, [$this->campaignId]));
         }
 
         if (isset($config['advertisingChannelType'])) {

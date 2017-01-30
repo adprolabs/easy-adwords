@@ -24,16 +24,22 @@ use Google\AdsApi\AdWords\v201609\cm\SortOrder;
 
 class Campaign {
 
-    protected $result;
-    protected $campaign;
+    protected $operationResult;
+    protected $campaignObject;
     protected $config;
     protected $authObject;
     protected $adWordsServices;
     protected $campaignService;
     protected $campaignId;
+    protected $campaigns;
 
-    public function __construct(CampaignConfig $config) {
-        $this->config = $config;
+    public function __construct(CampaignConfig $config = NULL) {
+        if ($config) {
+            $this->config = $config;
+        } else {
+            $this->config = new CampaignConfig([]);
+        }
+
         $this->adWordsServices = new AdWordsServices();
 
         // Create the auth object.
@@ -46,8 +52,8 @@ class Campaign {
         $this->campaignService = $this->adWordsServices->get($this->authObject->getSession(), CampaignService::class);
 
         // Build the singular campaign object.
-        $this->campaign = new \Google\AdsApi\AdWords\v201609\cm\Campaign();
-
+        $this->campaignObject = new \Google\AdsApi\AdWords\v201609\cm\Campaign();
+        $this->campaigns = NULL;
     }
 
     /**
@@ -61,8 +67,8 @@ class Campaign {
         }
 
         // Create a campaign with given settings.
-        $this->campaign->setName($this->config->getCampaignName());
-        $this->campaign->setAdvertisingChannelType($this->config->getAdvertisingChannelType());
+        $this->campaignObject->setName($this->config->getCampaignName());
+        $this->campaignObject->setAdvertisingChannelType($this->config->getAdvertisingChannelType());
 
         // Set shared budget (required).
         $this->createBudget();
@@ -74,42 +80,56 @@ class Campaign {
         $this->setNetworkTargeting();
 
         // Set additional settings (optional).
-        $this->campaign->setStatus($this->config->getStatus());
-        $this->campaign->setStartDate($this->config->getStartDate());
-        $this->campaign->setEndDate($this->config->getEndDate());
-        $this->campaign->setAdServingOptimizationStatus($this->config->getAdServingOptimizationStatus());
-        $this->campaign->setServingStatus($this->config->getServingStatus());
+        $this->campaignObject->setStatus($this->config->getStatus());
+        $this->campaignObject->setStartDate($this->config->getStartDate());
+        $this->campaignObject->setEndDate($this->config->getEndDate());
+        $this->campaignObject->setAdServingOptimizationStatus($this->config->getAdServingOptimizationStatus());
+        $this->campaignObject->setServingStatus($this->config->getServingStatus());
 
         // Create a campaign operation and add it to the operations list.
         $operation = new CampaignOperation();
-        $operation->setOperand($this->campaign);
+        $operation->setOperand($this->campaignObject);
         $operation->setOperator(Operator::ADD);
 
         // Create the campaigns on the server.
         $result = $this->campaignService->mutate([$operation]);
-        $this->result = $result->getValue();
+        $this->operationResult = $result->getValue();
+        return $this;
     }
 
     /**
      * List all the campaigns with the given fields and predicates.
      */
-    public function all() {
+    public function get() {
+
+        if ($this->campaigns) {
+            $this->downloadCampaigns();
+        }
+
+        return $this->campaigns;
+    }
+
+    private function downloadCampaigns() {
 
         // Create selector.
         $selector = new Selector();
         $selector->setFields($this->config->getFields());
-        $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
 
-        if($this->config->getCampaignId()) {
-            $selector->setPredicates([new Predicate('Id', PredicateOperator::EQUALS, [$this->config->getCampaignId()])]);
+        // Set ordering if given in config.
+        if ($this->config->getOrdering()) {
+            $selector->setOrdering($this->config->getOrdering());
         }
 
+        // Set predicates if given in config.
+        if ($this->config->getPredicates()) {
+            $selector->setPredicates($this->config->getPredicates());
+        }
 
         // Make the get request.
         $allCampaigns = $this->campaignService->get($selector);
 
         // Get all the campaigns.
-        $this->result = $allCampaigns->getEntries();
+        $this->campaigns = $allCampaigns->getEntries();
     }
 
     /**
@@ -138,8 +158,8 @@ class Campaign {
         $budget = $result->getValue()[0];
 
         // Apply the budget to the campaign object.
-        $this->campaign->setBudget(new Budget());
-        $this->campaign->getBudget()->setBudgetId($budget->getBudgetId());
+        $this->campaignObject->setBudget(new Budget());
+        $this->campaignObject->getBudget()->setBudgetId($budget->getBudgetId());
     }
 
     /**
@@ -152,7 +172,7 @@ class Campaign {
         $networkSetting->setTargetContentNetwork($this->config->getTargetContentNetwork());
 
         // Apply the targeting to the campaign object.
-        $this->campaign->setNetworkSetting($networkSetting);
+        $this->campaignObject->setNetworkSetting($networkSetting);
     }
 
     /**
@@ -165,7 +185,7 @@ class Campaign {
         $biddingStrategyConfiguration->setBiddingStrategyType($this->config->getBiddingStrategyType());
 
         // Apply the strategy to the campaign object.
-        $this->campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
+        $this->campaignObject->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
     }
 
     /**
@@ -187,16 +207,16 @@ class Campaign {
     /**
      * @return mixed
      */
-    public function getResult() {
-        return $this->result;
+    public function getOperationResult() {
+        return $this->operationResult;
     }
 
     /**
-     * @param mixed $result
+     * @param mixed $operationResult
      * @return Campaign
      */
-    public function setResult($result) {
-        $this->result = $result;
+    public function setOperationResult($operationResult) {
+        $this->operationResult = $operationResult;
         return $this;
     }
 }

@@ -9,12 +9,14 @@ class Config extends Base {
     protected $adwordsConfigPath;
     protected $fields;
     protected $predicates;
+    protected $ordering;
 
     public function __construct(array $config) {
 
         $this->refreshToken = NULL;
         $this->clientCustomerId = NULL;
         $this->adwordsConfigPath = NULL;
+        $this->ordering = NULL;
 
         if (isset($config['refreshToken'])) {
             $this->refreshToken = $config['refreshToken'];
@@ -42,6 +44,14 @@ class Config extends Base {
             }
 
             $this->predicates = $config['predicates'];
+        }
+
+        if (isset($config['ordering'])) {
+            if (!is_array($config['ordering'])) {
+                $config['ordering'] = [$config['ordering']];
+            }
+
+            $this->predicates = $config['ordering'];
         }
     }
 
@@ -131,5 +141,21 @@ class Config extends Base {
      */
     public function addPredicate($predicate) {
         $this->predicates[] = $predicate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrdering() {
+        return $this->ordering;
+    }
+
+    /**
+     * @param mixed $ordering
+     * @return Config
+     */
+    public function setOrdering($ordering) {
+        $this->ordering = $ordering;
+        return $this;
     }
 }
