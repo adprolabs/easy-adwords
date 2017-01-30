@@ -14,13 +14,7 @@ use Google\AdsApi\AdWords\v201609\cm\CampaignService;
 use Google\AdsApi\AdWords\v201609\cm\Money;
 use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
-use Google\AdsApi\AdWords\v201609\cm\OrderBy;
-use Google\AdsApi\AdWords\v201609\cm\Paging;
-use Google\AdsApi\AdWords\v201609\cm\Predicate;
-use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
-use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
-use Google\AdsApi\AdWords\v201609\cm\SortOrder;
 
 class Campaign {
 
@@ -102,7 +96,7 @@ class Campaign {
      */
     public function get() {
 
-        if ($this->campaigns) {
+        if (!$this->campaigns) {
             $this->downloadCampaigns();
         }
 
