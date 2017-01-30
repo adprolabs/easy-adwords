@@ -16,18 +16,21 @@ use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
 use Google\AdsApi\AdWords\v201609\cm\OrderBy;
 use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
 use Google\AdsApi\AdWords\v201609\cm\SortOrder;
 
 class Campaign {
 
-    protected $config;
     protected $result;
+    protected $campaign;
+    protected $config;
     protected $authObject;
     protected $adWordsServices;
     protected $campaignService;
-    protected $campaign;
+    protected $campaignId;
 
     public function __construct(CampaignConfig $config) {
         $this->config = $config;
@@ -47,6 +50,10 @@ class Campaign {
 
     }
 
+    /**
+     * Create a campaign with given configurations.
+     * @throws Exception
+     */
     public function create() {
 
         if (!$this->config->getCampaignName()) {
@@ -83,6 +90,9 @@ class Campaign {
         $this->result = $result->getValue();
     }
 
+    /**
+     * List all the campaigns with the given fields and predicates.
+     */
     public function all() {
 
         // Create selector.
@@ -90,13 +100,17 @@ class Campaign {
         $selector->setFields($this->config->getFields());
         $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
 
+        if($this->config->getCampaignId()) {
+            $selector->setPredicates([new Predicate('Id', PredicateOperator::EQUALS, $this->config->getCampaignId())]);
+        }
+
+
         // Make the get request.
         $allCampaigns = $this->campaignService->get($selector);
 
         // Get all the campaigns.
         $this->result = $allCampaigns->getEntries();
     }
-
 
     /**
      * Create the budget object and apply the budget to the campaign object.
@@ -153,7 +167,6 @@ class Campaign {
         // Apply the strategy to the campaign object.
         $this->campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
     }
-
 
     /**
      * @return CampaignConfig

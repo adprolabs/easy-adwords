@@ -25,6 +25,7 @@ class CampaignConfig extends Config {
     protected $endDate;
     protected $adServingOptimizationStatus;
     protected $servingStatus;
+    protected $campaignId;
 
     public function __construct(array $config) {
         parent::__construct($config);
@@ -43,9 +44,14 @@ class CampaignConfig extends Config {
         $this->endDate = NULL;
         $this->adServingOptimizationStatus = NULL;
         $this->servingStatus = ServingStatus::SERVING;
+        $this->campaignId = NULL;
 
         if (isset($config['campaignName'])) {
             $this->campaignName = $config['campaignName'];
+        }
+
+        if (isset($config['campaignId'])) {
+            $this->campaignId = $config['campaignId'];
         }
 
         if (isset($config['advertisingChannelType'])) {
@@ -317,4 +323,21 @@ class CampaignConfig extends Config {
         $this->servingStatus = $servingStatus;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCampaignId() {
+        return $this->campaignId;
+    }
+
+    /**
+     * @param mixed $campaignId
+     * @return CampaignConfig
+     */
+    public function setCampaignId($campaignId) {
+        $this->campaignId = $campaignId;
+        return $this;
+    }
+
 }
