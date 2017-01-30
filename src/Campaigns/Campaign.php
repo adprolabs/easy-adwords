@@ -11,6 +11,7 @@ use Google\AdsApi\AdWords\v201609\cm\BudgetOperation;
 use Google\AdsApi\AdWords\v201609\cm\BudgetService;
 use Google\AdsApi\AdWords\v201609\cm\CampaignOperation;
 use Google\AdsApi\AdWords\v201609\cm\CampaignService;
+use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
 use Google\AdsApi\AdWords\v201609\cm\Money;
 use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
@@ -57,7 +58,7 @@ class Campaign {
     public function create() {
 
         if (!$this->config->getCampaignName()) {
-            throw new Exception("Campaign name must be set to create campaign.");
+            throw new Exception("Campaign name must be set in the config object in order to create campaign.");
         }
 
         // Create a campaign with given settings.
@@ -96,11 +97,32 @@ class Campaign {
      */
     public function get() {
 
+        // If the campaigns are not already downloaded, download them.
         if (!$this->campaigns) {
             $this->downloadCampaigns();
         }
 
         return $this->campaigns;
+    }
+
+    public function remove() {
+
+        if(!$this->config->getCampaignId()) {
+            throw new Exception("Campaign ID must be set in the config object in order to remove a campaign.");
+        }
+
+        // Identify the campaign.
+        $this->campaignObject->setId($this->config->getCampaignId());
+        $this->campaignObject->setStatus(CampaignStatus::REMOVED);
+
+        // Create a campaign operation and add it to the list.
+        $operation = new CampaignOperation();
+        $operation->setOperand($this->campaignObject);
+        $operation->setOperator(Operator::SET);
+
+        // Remove the campaign on the server.
+        $result = $this->campaignService->mutate([$operation]);
+        $this->operationResult = $result->getValue()[0];
     }
 
     private function downloadCampaigns() {
