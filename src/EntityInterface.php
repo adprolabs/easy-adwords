@@ -8,6 +8,6 @@ interface EntityInterface {
     public function get();
     public function remove();
     public function downloadFromGoogle();
+    public function setConfig($config);
     public function getConfig();
-    public function getOperationResult();
 }

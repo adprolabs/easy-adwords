@@ -16,7 +16,6 @@ class ReportConfig extends Config {
 
         $this->fields = array();
 
-
         if (isset($config['dateStart'])) {
             $this->dateStart = $config['dateStart'];
         }

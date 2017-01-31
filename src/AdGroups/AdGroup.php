@@ -21,7 +21,6 @@ class AdGroup extends Entity implements EntityInterface {
     protected $adGroups;
     protected $adGroupService;
     protected $adGroupObject;
-    protected $operationResult;
 
     public function __construct(AdGroupConfig $config) {
         parent::__construct();
@@ -34,7 +33,7 @@ class AdGroup extends Entity implements EntityInterface {
     }
 
     /**
-     * Create an ad group based on given config information.
+     * Create an ad group based on given config.
      * @throws Exception
      */
     public function create() {
@@ -78,26 +77,10 @@ class AdGroup extends Entity implements EntityInterface {
      */
     public function get() {
         if (!$this->adGroups) {
-            $this->downloadFromGoogle();
+            $this->adGroups = $this->downloadFromGoogle($this->config, $this->adGroupService);
         }
 
         return $this->adGroups;
-    }
-
-    /**
-     * Download all the ad groups that meet the given config criteria.
-     * Useful if the list needs to be re-downloaded.
-     */
-    public function downloadFromGoogle() {
-
-        // Create a selector to select all ad groups for the specified campaign.
-        $selector = new Selector();
-        $selector->setFields($this->config->getFields());
-        $selector->setOrdering($this->config->getOrdering());
-        $selector->setPredicates($this->config->getPredicates());
-
-        $adGroups = $this->adGroupService->get($selector);
-        $this->adGroups = $adGroups->getEntries();
     }
 
     /**
@@ -123,7 +106,6 @@ class AdGroup extends Entity implements EntityInterface {
         $result = $this->adGroupService->mutate([$operation]);
         $this->operationResult = $result->getValue()[0];
     }
-
 
     /**
      * @return AdGroupConfig
@@ -173,19 +155,4 @@ class AdGroup extends Entity implements EntityInterface {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOperationResult() {
-        return $this->operationResult;
-    }
-
-    /**
-     * @param mixed $operationResult
-     * @return AdGroup
-     */
-    public function setOperationResult($operationResult) {
-        $this->operationResult = $operationResult;
-        return $this;
-    }
 }

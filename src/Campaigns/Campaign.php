@@ -21,7 +21,6 @@ use Google\AdsApi\AdWords\v201609\cm\Selector;
 
 class Campaign extends Entity implements EntityInterface {
 
-    protected $operationResult;
     protected $campaignObject;
     protected $config;
     protected $campaignService;
@@ -95,7 +94,7 @@ class Campaign extends Entity implements EntityInterface {
 
         // If the campaigns are not already downloaded, download them.
         if (!$this->campaigns) {
-            $this->downloadFromGoogle();
+            $this->campaign = $this->downloadFromGoogle($this->config, $this->campaignService);
         }
 
         return $this->campaigns;
@@ -123,33 +122,6 @@ class Campaign extends Entity implements EntityInterface {
         // Remove the campaign on the server.
         $result = $this->campaignService->mutate([$operation]);
         $this->operationResult = $result->getValue()[0];
-    }
-
-    /**
-     * Download all the ad groups that meet the given config criteria.
-     * Useful if the list needs to be re-downloaded.
-     */
-    public function downloadFromGoogle() {
-
-        // Create selector.
-        $selector = new Selector();
-        $selector->setFields($this->config->getFields());
-
-        // Set ordering if given in config.
-        if ($this->config->getOrdering()) {
-            $selector->setOrdering($this->config->getOrdering());
-        }
-
-        // Set predicates if given in config.
-        if ($this->config->getPredicates()) {
-            $selector->setPredicates($this->config->getPredicates());
-        }
-
-        // Make the get request.
-        $allCampaigns = $this->campaignService->get($selector);
-
-        // Get all the campaigns.
-        $this->campaigns = $allCampaigns->getEntries();
     }
 
     /**
@@ -206,22 +178,6 @@ class Campaign extends Entity implements EntityInterface {
 
         // Apply the strategy to the campaign object.
         $this->campaignObject->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOperationResult() {
-        return $this->operationResult;
-    }
-
-    /**
-     * @param mixed $operationResult
-     * @return Campaign
-     */
-    public function setOperationResult($operationResult) {
-        $this->operationResult = $operationResult;
-        return $this;
     }
 
     /**
