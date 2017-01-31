@@ -3,6 +3,8 @@
 namespace EasyAdwords\Campaigns;
 
 use EasyAdwords\Auth\AdWordsAuth;
+use EasyAdwords\Entity;
+use EasyAdwords\EntityInterface;
 use Exception;
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
@@ -17,31 +19,24 @@ use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 
-class Campaign {
+class Campaign extends Entity implements EntityInterface {
 
     protected $operationResult;
     protected $campaignObject;
     protected $config;
-    protected $authObject;
-    protected $adWordsServices;
     protected $campaignService;
     protected $campaignId;
     protected $campaigns;
 
     public function __construct(CampaignConfig $config = NULL) {
+
+        parent::__construct();
+
         if ($config) {
             $this->config = $config;
         } else {
             $this->config = new CampaignConfig([]);
         }
-
-        $this->adWordsServices = new AdWordsServices();
-
-        // Create the auth object.
-        $this->authObject = new AdWordsAuth($this->config->getRefreshToken(), $this->config->getAdwordsConfigPath());
-
-        // Build the session with the auth object.
-        $this->authObject->buildSession($this->config->getClientCustomerId());
 
         // Build the campaign service.
         $this->campaignService = $this->adWordsServices->get($this->authObject->getSession(), CampaignService::class);
@@ -52,7 +47,7 @@ class Campaign {
     }
 
     /**
-     * Create a campaign with given configurations.
+     * Create a campaign based on given config information.
      * @throws Exception
      */
     public function create() {
@@ -69,10 +64,10 @@ class Campaign {
         $this->createBudget();
 
         // Set the bidding strategy.
-        $this->setBiddingStrategy();
+        $this->setBiddingStrategyObject();
 
         // Set network targeting.
-        $this->setNetworkTargeting();
+        $this->setNetworkTargetingObject();
 
         // Set additional settings (optional).
         $this->campaignObject->setStatus($this->config->getStatus());
@@ -94,20 +89,25 @@ class Campaign {
 
     /**
      * List all the campaigns with the given fields and predicates.
+     * Works as an alias of "getCampaigns" if the list is already downloaded before.
      */
     public function get() {
 
         // If the campaigns are not already downloaded, download them.
         if (!$this->campaigns) {
-            $this->downloadCampaigns();
+            $this->downloadFromGoogle();
         }
 
         return $this->campaigns;
     }
 
+    /**
+     * Remove a campaign given its campaign ID.
+     * @throws Exception
+     */
     public function remove() {
 
-        if(!$this->config->getCampaignId()) {
+        if (!$this->config->getCampaignId()) {
             throw new Exception("Campaign ID must be set in the config object in order to remove a campaign.");
         }
 
@@ -125,7 +125,11 @@ class Campaign {
         $this->operationResult = $result->getValue()[0];
     }
 
-    private function downloadCampaigns() {
+    /**
+     * Download all the ad groups that meet the given config criteria.
+     * Useful if the list needs to be re-downloaded.
+     */
+    public function downloadFromGoogle() {
 
         // Create selector.
         $selector = new Selector();
@@ -181,7 +185,7 @@ class Campaign {
     /**
      * Create the network setting object and apply the settings to the campaign object.
      */
-    private function setNetworkTargeting() {
+    private function setNetworkTargetingObject() {
         $networkSetting = new NetworkSetting();
         $networkSetting->setTargetGoogleSearch($this->config->getTargetGoogleSearch());
         $networkSetting->setTargetSearchNetwork($this->config->getTargetSearchNetwork());
@@ -194,7 +198,7 @@ class Campaign {
     /**
      * Create the bidding strategy object and apply the strategy to the campaign object.
      */
-    private function setBiddingStrategy() {
+    private function setBiddingStrategyObject() {
 
         // Set bidding strategy (required).
         $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
@@ -202,6 +206,38 @@ class Campaign {
 
         // Apply the strategy to the campaign object.
         $this->campaignObject->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOperationResult() {
+        return $this->operationResult;
+    }
+
+    /**
+     * @param mixed $operationResult
+     * @return Campaign
+     */
+    public function setOperationResult($operationResult) {
+        $this->operationResult = $operationResult;
+        return $this;
+    }
+
+    /**
+     * @return \Google\AdsApi\AdWords\v201609\cm\Campaign
+     */
+    public function getCampaignObject() {
+        return $this->campaignObject;
+    }
+
+    /**
+     * @param \Google\AdsApi\AdWords\v201609\cm\Campaign $campaignObject
+     * @return Campaign
+     */
+    public function setCampaignObject($campaignObject) {
+        $this->campaignObject = $campaignObject;
+        return $this;
     }
 
     /**
@@ -221,18 +257,83 @@ class Campaign {
     }
 
     /**
-     * @return mixed
+     * @return AdWordsAuth
      */
-    public function getOperationResult() {
-        return $this->operationResult;
+    public function getAuthObject() {
+        return $this->authObject;
     }
 
     /**
-     * @param mixed $operationResult
+     * @param AdWordsAuth $authObject
      * @return Campaign
      */
-    public function setOperationResult($operationResult) {
-        $this->operationResult = $operationResult;
+    public function setAuthObject($authObject) {
+        $this->authObject = $authObject;
         return $this;
     }
+
+    /**
+     * @return AdWordsServices
+     */
+    public function getAdWordsServices() {
+        return $this->adWordsServices;
+    }
+
+    /**
+     * @param AdWordsServices $adWordsServices
+     * @return Campaign
+     */
+    public function setAdWordsServices($adWordsServices) {
+        $this->adWordsServices = $adWordsServices;
+        return $this;
+    }
+
+    /**
+     * @return \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient
+     */
+    public function getCampaignService() {
+        return $this->campaignService;
+    }
+
+    /**
+     * @param \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient $campaignService
+     * @return Campaign
+     */
+    public function setCampaignService($campaignService) {
+        $this->campaignService = $campaignService;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCampaignId() {
+        return $this->campaignId;
+    }
+
+    /**
+     * @param mixed $campaignId
+     * @return Campaign
+     */
+    public function setCampaignId($campaignId) {
+        $this->campaignId = $campaignId;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCampaigns() {
+        return $this->campaigns;
+    }
+
+    /**
+     * @param null $campaigns
+     * @return Campaign
+     */
+    public function setCampaigns($campaigns) {
+        $this->campaigns = $campaigns;
+        return $this;
+    }
+
 }

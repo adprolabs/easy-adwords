@@ -13,6 +13,7 @@ use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
 
 class CampaignConfig extends Config {
 
+    protected $campaignId;
     protected $campaignName;
     protected $advertisingChannelType;
     protected $status;
@@ -27,7 +28,6 @@ class CampaignConfig extends Config {
     protected $endDate;
     protected $adServingOptimizationStatus;
     protected $servingStatus;
-    protected $campaignId;
 
     public function __construct(array $config) {
         parent::__construct($config);
