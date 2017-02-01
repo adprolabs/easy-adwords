@@ -4,12 +4,12 @@ namespace EasyAdwords;
 
 class Config extends Base {
 
-    protected $refreshToken;
-    protected $clientCustomerId;
+    protected $refreshToken;        // required.
+    protected $clientCustomerId;    // required.
     protected $adwordsConfigPath;
     protected $fields;
-    protected $predicates;
-    protected $ordering;
+    protected $predicates;          // must be type of an array of "Google\AdsApi\AdWords\v201609\cm\Predicate" objects.
+    protected $ordering;            // must be type of an array of "Google\AdsApi\AdWords\v201609\cm\OrderBy" objects.
 
     public function __construct(array $config) {
 

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>\EasyAdwords\Base</OriginalElement>
+  <nodes>
+    <node x="4741.625" y="1130.5">\EasyAdwords\Reports\CampaignPerformanceReport</node>
+    <node x="4951.625" y="1130.5">\EasyAdwords\Reports\KeywordsPerformanceReport</node>
+    <node x="3833.5" y="1936.0">\EasyAdwords\Keywords\KeywordBatch</node>
+    <node x="1544.0" y="921.0">\EasyAdwords\Keywords\KeywordConfig</node>
+    <node x="4691.125" y="244.5">\EasyAdwords\Reports\ReportInterface</node>
+    <node x="2371.5" y="1727.0">\EasyAdwords\Campaigns\Campaign</node>
+    <node x="4349.625" y="1130.5">\App\AdPro\Reports\SearchQueryPerformanceReport</node>
+    <node x="1148.0" y="79.0">\EasyAdwords\Config</node>
+    <node x="182.0" y="657.0">\EasyAdwords\Campaigns\CampaignConfig</node>
+    <node x="3003.25" y="178.0">\EasyAdwords\Entity</node>
+    <node x="3688.625" y="1097.0">\EasyAdwords\Keywords\KeywordBase</node>
+    <node x="3031.5" y="1859.0">\EasyAdwords\AdGroups\AdGroup</node>
+    <node x="2091.0" y="987.0">\EasyAdwords\AdGroups\AdGroupConfig</node>
+    <node x="4571.625" y="1130.5">\EasyAdwords\Reports\AdPerformanceReport</node>
+    <node x="5157.625" y="1130.5">\EasyAdwords\Reports\AccountPerformanceReport</node>
+    <node x="4324.125" y="167.0">\EasyAdwords\Reports\Report</node>
+    <node x="3414.5" y="1881.0">\EasyAdwords\Keywords\Keyword</node>
+    <node x="4146.625" y="1130.5">\EasyAdwords\Reports\AdGroupPerformanceReport</node>
+    <node x="3989.625" y="1130.5">\EasyAdwords\Reports\FinalUrlReport</node>
+    <node x="1258.0" y="1064.0">\EasyAdwords\Reports\ReportConfig</node>
+    <node x="3130.75" y="0.0">\EasyAdwords\Base</node>
+    <node x="0.0" y="1119.0">\EasyAdwords\Keywords\KeywordBatchConfig</node>
+    <node x="0.0" y="2352.0">\EasyAdwords\Auth\AdWordsAuth</node>
+    <node x="3180.7618095238095" y="1086.5">\EasyAdwords\EntityInterface</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="\EasyAdwords\AdGroups\AdGroupConfig" target="\EasyAdwords\Config">
+      <point x="0.0" y="-180.0" />
+      <point x="2306.0" y="627.0" />
+      <point x="1585.3999999999999" y="627.0" />
+      <point x="194.39999999999986" y="224.0" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\AdGroupPerformanceReport" target="\EasyAdwords\Reports\Report">
+      <point x="-45.75" y="-36.5" />
+      <point x="4192.375" y="587.0" />
+      <point x="4398.482142857143" y="587.0" />
+      <point x="-99.14285714285734" y="136.0" />
+    </edge>
+    <edge source="\EasyAdwords\Keywords\Keyword" target="\EasyAdwords\Keywords\KeywordBase">
+      <point x="99.75" y="-136.0" />
+      <point x="3713.75" y="1707.0" />
+      <point x="3758.875" y="1707.0" />
+      <point x="-70.25" y="70.0" />
+    </edge>
+    <edge source="\EasyAdwords\Keywords\KeywordBatchConfig" target="\EasyAdwords\Config">
+      <point x="0.0" y="-48.0" />
+      <point x="81.0" y="627.0" />
+      <point x="1196.6" y="627.0" />
+      <point x="-194.39999999999998" y="224.0" />
+    </edge>
+    <edge source="\App\AdPro\Reports\SearchQueryPerformanceReport" target="\EasyAdwords\Reports\ReportInterface">
+      <point x="50.5" y="-36.5" />
+      <point x="4501.125" y="627.0" />
+      <point x="4765.767857142857" y="627.0" />
+      <point x="-29.857142857142662" y="58.5" />
+    </edge>
+    <edge source="\EasyAdwords\Keywords\Keyword" target="\EasyAdwords\EntityInterface">
+      <point x="-99.75" y="-136.0" />
+      <point x="3514.25" y="1707.0" />
+      <point x="3344.095142857143" y="1707.0" />
+      <point x="65.33333333333326" y="80.5" />
+    </edge>
+    <edge source="\EasyAdwords\Campaigns\Campaign" target="\EasyAdwords\EntityInterface">
+      <point x="160.0" y="-290.0" />
+      <point x="2851.5" y="1707.0" />
+      <point x="3213.4284761904764" y="1707.0" />
+      <point x="-65.33333333333326" y="80.5" />
+    </edge>
+    <edge source="\EasyAdwords\AdGroups\AdGroup" target="\EasyAdwords\EntityInterface">
+      <point x="90.75" y="-158.0" />
+      <point x="3303.75" y="1707.0" />
+      <point x="3278.7618095238095" y="1707.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="\EasyAdwords\Entity" target="\EasyAdwords\Base">
+      <point x="0.0" y="-125.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\CampaignPerformanceReport" target="\EasyAdwords\Reports\Report">
+      <point x="-47.5" y="-36.5" />
+      <point x="4789.125" y="587.0" />
+      <point x="4547.196428571428" y="587.0" />
+      <point x="49.57142857142844" y="136.0" />
+    </edge>
+    <edge source="\App\AdPro\Reports\SearchQueryPerformanceReport" target="\EasyAdwords\Reports\Report">
+      <point x="-50.5" y="-36.5" />
+      <point x="4400.125" y="597.0" />
+      <point x="4448.053571428572" y="597.0" />
+      <point x="-49.57142857142844" y="136.0" />
+    </edge>
+    <edge source="\EasyAdwords\Campaigns\Campaign" target="\EasyAdwords\Entity">
+      <point x="-160.0" y="-290.0" />
+      <point x="2531.5" y="637.0" />
+      <point x="3055.083333333333" y="637.0" />
+      <point x="-103.66666666666674" y="125.0" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\ReportConfig" target="\EasyAdwords\Config">
+      <point x="0.0" y="-103.0" />
+      <point x="0.0" y="224.0" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\FinalUrlReport" target="\EasyAdwords\Reports\Report">
+      <point x="-34.25" y="-36.5" />
+      <point x="4023.875" y="577.0" />
+      <point x="4348.910714285714" y="577.0" />
+      <point x="-148.71428571428578" y="136.0" />
+    </edge>
+    <edge source="\EasyAdwords\Campaigns\CampaignConfig" target="\EasyAdwords\Config">
+      <point x="0.0" y="-510.0" />
+      <point x="710.0" y="637.0" />
+      <point x="1293.8" y="637.0" />
+      <point x="-97.20000000000005" y="224.0" />
+    </edge>
+    <edge source="\EasyAdwords\Keywords\KeywordBase" target="\EasyAdwords\Entity">
+      <point x="0.0" y="-70.0" />
+      <point x="3829.125" y="637.0" />
+      <point x="3262.4166666666665" y="637.0" />
+      <point x="103.66666666666674" y="125.0" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\KeywordsPerformanceReport" target="\EasyAdwords\Reports\ReportInterface">
+      <point x="46.5" y="-36.5" />
+      <point x="5091.125" y="567.0" />
+      <point x="4855.339285714286" y="567.0" />
+      <point x="59.71428571428578" y="58.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\CampaignPerformanceReport" target="\EasyAdwords\Reports\ReportInterface">
+      <point x="47.5" y="-36.5" />
+      <point x="4884.125" y="637.0" />
+      <point x="4825.482142857143" y="637.0" />
+      <point x="29.857142857142662" y="58.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\Report" target="\EasyAdwords\Base">
+      <point x="0.0" y="-136.0" />
+      <point x="4497.625" y="54.0" />
+      <point x="3177.4166666666665" y="54.0" />
+      <point x="18.666666666666742" y="14.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\AccountPerformanceReport" target="\EasyAdwords\Reports\Report">
+      <point x="-45.0" y="-36.5" />
+      <point x="5202.625" y="557.0" />
+      <point x="4646.339285714286" y="557.0" />
+      <point x="148.71428571428578" y="136.0" />
+    </edge>
+    <edge source="\EasyAdwords\Keywords\KeywordBatch" target="\EasyAdwords\Keywords\KeywordBase">
+      <point x="0.0" y="-81.0" />
+      <point x="3944.5" y="1707.0" />
+      <point x="3899.375" y="1707.0" />
+      <point x="70.25" y="70.0" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\FinalUrlReport" target="\EasyAdwords\Reports\ReportInterface">
+      <point x="34.25" y="-36.5" />
+      <point x="4092.375" y="607.0" />
+      <point x="4706.053571428572" y="607.0" />
+      <point x="-89.57142857142844" y="58.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\AdPerformanceReport" target="\EasyAdwords\Reports\ReportInterface">
+      <point x="37.5" y="-36.5" />
+      <point x="4684.125" y="637.0" />
+      <point x="4795.625" y="637.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\KeywordsPerformanceReport" target="\EasyAdwords\Reports\Report">
+      <point x="-46.5" y="-36.5" />
+      <point x="4998.125" y="577.0" />
+      <point x="4596.767857142857" y="577.0" />
+      <point x="99.14285714285734" y="136.0" />
+    </edge>
+    <edge source="\EasyAdwords\Keywords\KeywordConfig" target="\EasyAdwords\Config">
+      <point x="0.0" y="-246.0" />
+      <point x="1807.5" y="637.0" />
+      <point x="1488.1999999999998" y="637.0" />
+      <point x="97.19999999999993" y="224.0" />
+    </edge>
+    <edge source="\EasyAdwords\AdGroups\AdGroup" target="\EasyAdwords\Entity">
+      <point x="-90.75" y="-158.0" />
+      <point x="3122.25" y="1697.0" />
+      <point x="3158.75" y="1697.0" />
+      <point x="0.0" y="125.0" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\AdGroupPerformanceReport" target="\EasyAdwords\Reports\ReportInterface">
+      <point x="45.75" y="-36.5" />
+      <point x="4283.875" y="617.0" />
+      <point x="4735.910714285714" y="617.0" />
+      <point x="-59.71428571428578" y="58.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\AccountPerformanceReport" target="\EasyAdwords\Reports\ReportInterface">
+      <point x="45.0" y="-36.5" />
+      <point x="5292.625" y="547.0" />
+      <point x="4885.196428571428" y="547.0" />
+      <point x="89.57142857142844" y="58.5" />
+    </edge>
+    <edge source="\EasyAdwords\Reports\AdPerformanceReport" target="\EasyAdwords\Reports\Report">
+      <point x="-37.5" y="-36.5" />
+      <point x="4609.125" y="597.0" />
+      <point x="4497.625" y="597.0" />
+      <point x="0.0" y="136.0" />
+    </edge>
+    <edge source="\EasyAdwords\Config" target="\EasyAdwords\Base">
+      <point x="0.0" y="-224.0" />
+      <point x="1391.0" y="54.0" />
+      <point x="3140.083333333333" y="54.0" />
+      <point x="-18.666666666666742" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.29454022988505746" x="1730.0" y="545.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

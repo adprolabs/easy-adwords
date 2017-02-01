@@ -3,6 +3,7 @@
 namespace EasyAdwords\Reports;
 
 use EasyAdwords\Auth\AdWordsAuth;
+use EasyAdwords\Base;
 use Google\AdsApi\AdWords\Reporting\v201609\DownloadFormat;
 use Google\AdsApi\AdWords\Reporting\v201609\ReportDefinition;
 use Google\AdsApi\AdWords\Reporting\v201609\ReportDefinitionDateRangeType;
@@ -10,7 +11,7 @@ use Google\AdsApi\AdWords\Reporting\v201609\ReportDownloader;
 use Google\AdsApi\AdWords\v201609\cm\DateRange;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 
-class Report {
+class Report extends Base {
 
     protected $config;
     protected $report;

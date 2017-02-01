@@ -2,6 +2,7 @@
 
 namespace EasyAdwords\Keywords;
 
+use EasyAdwords\Config;
 use EasyAdwords\Entity;
 use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
@@ -12,13 +13,21 @@ use Google\AdsApi\AdWords\v201609\cm\CpcBid;
 use Google\AdsApi\AdWords\v201609\cm\Money;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
 
+/**
+ * Base class for Keyword and KeywordBatch classes.
+ * Main objective is to merge repetitive parts of the both classes into a parent class.
+ *
+ * Class KeywordBase
+ * @package EasyAdwords\Keywords
+ */
 class KeywordBase extends Entity {
 
     protected $adGroupCriterionService;
 
-    public function __construct() {
+    public function __construct(Config $config) {
 
-        parent::__construct();
+        // Construct the parent class.
+        parent::__construct($config);
 
         // Set the service object.
         $this->adGroupCriterionService = $this->adWordsServices->get($this->authObject->getSession(), AdGroupCriterionService::class);

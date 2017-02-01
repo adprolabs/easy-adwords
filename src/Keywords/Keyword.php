@@ -2,22 +2,21 @@
 
 namespace EasyAdwords\Keywords;
 
-use EasyAdwords\Entity;
 use EasyAdwords\EntityInterface;
 use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterion;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionService;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupOperation;
-use Google\AdsApi\AdWords\v201609\cm\BiddableAdGroupCriterion;
-use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
-use Google\AdsApi\AdWords\v201609\cm\CpcBid;
 use Google\AdsApi\AdWords\v201609\cm\Criterion;
-use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
-use Google\AdsApi\AdWords\v201609\cm\Money;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
-use Google\AdsApi\AdWords\v201609\cm\Selector;
 
+
+/**
+ * Base class for basic keyword operations.
+ * Operates based on the given KeywordConfig object.
+ *
+ * Class Keyword
+ * @package EasyAdwords\Keywords
+ */
 class Keyword extends KeywordBase implements EntityInterface {
 
     protected $config;
@@ -25,7 +24,7 @@ class Keyword extends KeywordBase implements EntityInterface {
     protected $adGroupCriterionObject;
 
     public function __construct(KeywordConfig $config) {
-        parent::__construct();
+        parent::__construct($config);
 
         $this->config = $config;
         $this->keywords = NULL;
@@ -65,7 +64,10 @@ class Keyword extends KeywordBase implements EntityInterface {
      */
     public function remove() {
 
+        // Create a criterion object.
         $criterion = new Criterion();
+
+        // Check if the keyword ID is set.
         if ($this->config->getKeywordId()) {
             $criterion->setId($this->config->getKeywordId());
         } else {
@@ -74,12 +76,15 @@ class Keyword extends KeywordBase implements EntityInterface {
 
         // Create an ad group criterion.
         $adGroupCriterion = new AdGroupCriterion();
+
+        // Check if the ad group ID is set.
         if ($this->config->getAdGroupId()) {
             $adGroupCriterion->setAdGroupId($this->config->getAdGroupId());
         } else {
             throw new Exception("Ad group ID must be set in the config object in order to remove a keyword.");
         }
 
+        // Set the criterion on ad group object.
         $adGroupCriterion->setCriterion($criterion);
 
         // Create an ad group criterion operation.
@@ -87,11 +92,13 @@ class Keyword extends KeywordBase implements EntityInterface {
         $operation->setOperand($adGroupCriterion);
         $operation->setOperator(Operator::REMOVE);
 
-        // Remove criterion on the server.
+        // Remove the criterion on the server.
         $this->operationResult = $this->adGroupCriterionService->mutate([$operation]);
     }
 
-
+    /**
+     * Add a single keyword based on given config.
+     */
     private function addSingleKeyword() {
 
         // Create the keyword operation.

@@ -17,8 +17,14 @@ use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
 use Google\AdsApi\AdWords\v201609\cm\Money;
 use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
-use Google\AdsApi\AdWords\v201609\cm\Selector;
 
+/**
+ * Base class for basic campaign operations.
+ * Operates based on the given CampaignConfig object.
+ *
+ * Class Campaign
+ * @package EasyAdwords\Campaigns
+ */
 class Campaign extends Entity implements EntityInterface {
 
     protected $campaignObject;
@@ -27,15 +33,11 @@ class Campaign extends Entity implements EntityInterface {
     protected $campaignId;
     protected $campaigns;
 
-    public function __construct(CampaignConfig $config = NULL) {
+    public function __construct(CampaignConfig $config) {
 
-        parent::__construct();
+        parent::__construct($config);
 
-        if ($config) {
-            $this->config = $config;
-        } else {
-            $this->config = new CampaignConfig([]);
-        }
+        $this->config = $config;
 
         // Build the campaign service.
         $this->campaignService = $this->adWordsServices->get($this->authObject->getSession(), CampaignService::class);

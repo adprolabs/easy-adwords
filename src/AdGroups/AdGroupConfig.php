@@ -6,12 +6,19 @@ use EasyAdwords\Config;
 use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupStatus;
 
+
+/**
+ * Config class for AdGroup class.
+ *
+ * Class AdGroupConfig
+ * @package EasyAdwords\AdGroups
+ */
 class AdGroupConfig extends Config {
 
     protected $campaignId;
     protected $adGroupName;
     protected $adGroupId;
-    protected $status;
+    protected $status; // must be an instance of "Google\AdsApi\AdWords\v201609\cm\AdGroupStatus" class.
     protected $bid;
 
     public function __construct(array $config) {

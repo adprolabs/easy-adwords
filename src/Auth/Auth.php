@@ -7,6 +7,12 @@ use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\Auth\OAuth2;
 
+/**
+ * Wrapper class for oAuth2 operations.
+ *
+ * Class AdWordsAuth
+ * @package EasyAdwords\Auth
+ */
 class AdWordsAuth {
 
     protected $refreshToken;
@@ -41,7 +47,7 @@ class AdWordsAuth {
     }
 
     /**
-     * Builds the oAuth object.
+     * Build the oAuth object.
      * @return $this
      */
     public function buildOAuthToken() {
@@ -65,7 +71,7 @@ class AdWordsAuth {
     }
 
     /**
-     * Builds the session object with oAuth credentials.
+     * Build the session object with oAuth credentials.
      * @param null $clientCustomerId
      * @return \Google\AdsApi\AdWords\AdWordsSession|mixed
      */

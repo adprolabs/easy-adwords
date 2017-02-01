@@ -7,26 +7,32 @@ use EasyAdwords\Auth\AdWordsAuth;
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 
+/**
+ * Parent of the various entity classes, such as Campaign, AdGroup and Keyword.
+ *
+ * Class Entity
+ * @package EasyAdwords
+ */
 class Entity extends Base {
 
     protected $operationResult;
     protected $authObject;
     protected $adWordsServices;
 
-    public function __construct() {
+    public function __construct(Config $config) {
 
         $this->adWordsServices = new AdWordsServices();
 
         // Create the auth object.
-        $this->authObject = new AdWordsAuth($this->config->getRefreshToken(), $this->config->getAdwordsConfigPath());
+        $this->authObject = new AdWordsAuth($config->getRefreshToken(), $config->getAdwordsConfigPath());
 
         // Build the session with the auth object.
-        $this->authObject->buildSession($this->config->getClientCustomerId());
+        $this->authObject->buildSession($config->getClientCustomerId());
     }
 
 
     /**
-     * Download all the keywords that meet the given config criteria.
+     * Download all the entities that meet the given config criteria and service.
      * Useful if the list needs to be re-downloaded.
      * @param Config $config
      * @param $adwordsService

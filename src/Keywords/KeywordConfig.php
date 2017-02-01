@@ -4,10 +4,16 @@ namespace EasyAdwords\Keywords;
 
 use EasyAdwords\Config;
 
+/**
+ * Config class for Keyword class.
+ *
+ * Class KeywordConfig
+ * @package EasyAdwords\Keywords
+ */
 class KeywordConfig extends Config {
     protected $keyword;
     protected $keywordId;
-    protected $matchType;
+    protected $matchType;   // must be type of "Google\AdsApi\AdWords\v201609\cm\KeywordMatchType".
     protected $finalUrls;
     protected $adGroupId;
     protected $bid;
@@ -55,7 +61,6 @@ class KeywordConfig extends Config {
         }
 
     }
-
 
     /**
      * @return mixed

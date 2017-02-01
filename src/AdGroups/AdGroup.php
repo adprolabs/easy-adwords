@@ -12,9 +12,14 @@ use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
 use Google\AdsApi\AdWords\v201609\cm\CpcBid;
 use Google\AdsApi\AdWords\v201609\cm\Money;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
-use Google\AdsApi\AdWords\v201609\cm\Selector;
 
-
+/**
+ * Base class for basic ad group operations.
+ * Operates based on the given AdGroupConfig object.
+ *
+ * Class AdGroup
+ * @package EasyAdwords\AdGroups
+ */
 class AdGroup extends Entity implements EntityInterface {
 
     protected $config;
@@ -23,10 +28,11 @@ class AdGroup extends Entity implements EntityInterface {
     protected $adGroupObject;
 
     public function __construct(AdGroupConfig $config) {
-        parent::__construct();
+        parent::__construct($config);
+
         $this->config = $config;
 
-        // Build the campaign service.
+        // Build the ad group service.
         $this->adGroupService = $this->adWordsServices->get($this->authObject->getSession(), AdGroupService::class);
         $this->adGroupObject = new \Google\AdsApi\AdWords\v201609\cm\AdGroup();
         $this->adGroups = NULL;

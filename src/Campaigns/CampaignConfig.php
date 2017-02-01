@@ -11,27 +11,34 @@ use Google\AdsApi\AdWords\v201609\cm\Predicate;
 use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
 use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
 
+/**
+ * Config class for Campaign class.
+ *
+ * Class CampaignConfig
+ * @package EasyAdwords\Campaigns
+ */
 class CampaignConfig extends Config {
 
     protected $campaignId;
     protected $campaignName;
-    protected $advertisingChannelType;
-    protected $status;
+    protected $advertisingChannelType;      // must be type of "Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType".
+    protected $status;                      // must be type of "Google\AdsApi\AdWords\v201609\cm\CampaignStatus".
     protected $budget;
     protected $budgetName;
-    protected $biddingStrategyType;
-    protected $budgetDeliveryMethod;
-    protected $targetGoogleSearch;
-    protected $targetSearchNetwork;
-    protected $targetContentNetwork;
+    protected $biddingStrategyType;         // must be type of "Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType".
+    protected $budgetDeliveryMethod;        // must be type of "Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod".
+    protected $targetGoogleSearch;          // boolean
+    protected $targetSearchNetwork;         // boolean
+    protected $targetContentNetwork;        // boolean
     protected $startDate;
     protected $endDate;
-    protected $adServingOptimizationStatus;
-    protected $servingStatus;
+    protected $adServingOptimizationStatus; // must be type of Google\AdsApi\AdWords\v201609\cm\AdServingOptimizationStatus´.
+    protected $servingStatus;               // must be type of Google\AdsApi\AdWords\v201609\cm\ServingStatus´.
 
     public function __construct(array $config) {
         parent::__construct($config);
 
+        // Predefined defaults.
         $this->campaignName = NULL;
         $this->advertisingChannelType = AdvertisingChannelType::SEARCH;
         $this->status = CampaignStatus::PAUSED;
