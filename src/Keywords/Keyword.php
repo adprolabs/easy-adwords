@@ -18,20 +18,16 @@ use Google\AdsApi\AdWords\v201609\cm\Money;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 
-class Keyword extends Entity implements EntityInterface {
+class Keyword extends KeywordBase implements EntityInterface {
 
     protected $config;
     protected $keywords;
-    protected $adGroupCriterionService;
     protected $adGroupCriterionObject;
 
     public function __construct(KeywordConfig $config) {
         parent::__construct();
-        $this->config = $config;
 
-        // Build the campaign service.
-        $this->adGroupCriterionService = $this->adWordsServices->get($this->authObject->getSession(), AdGroupCriterionService::class);
-        $this->adGroupCriterionObject = new \Google\AdsApi\AdWords\v201609\cm\Keyword();
+        $this->config = $config;
         $this->keywords = NULL;
     }
 
@@ -41,42 +37,12 @@ class Keyword extends Entity implements EntityInterface {
      */
     public function create() {
 
-        // Set the text and the match types of the criterion object.
-        $this->adGroupCriterionObject->setText($this->config->getKeyword());
-        $this->adGroupCriterionObject->setMatchType($this->config->getMatchType());
-
-        // Create a new biddable ad group criterion.
-        $adGroupCriterion = new BiddableAdGroupCriterion();
-        if ($this->config->getAdGroupId()) {
-            $adGroupCriterion->setAdGroupId($this->config->getAdGroupId());
+        if (!is_array($this->config->getKeyword())) {
+            $this->addSingleKeyword();
         } else {
-            throw new Exception("Ad group ID must be set in the config object in order to create a keyword.");
+            throw new Exception("The keyword must be a single keyword, not an array. If you want to perform multiple 
+            keyword operations, use KeywordBatch object.");
         }
-
-        $adGroupCriterion->setCriterion($this->adGroupCriterionObject);
-
-        // Set status if given in the config.
-        if ($this->config->getStatus()) {
-            $adGroupCriterion->setUserStatus($this->config->getStatus());
-        }
-
-        // Set final urls if given in the config.
-        if ($this->config->getFinalUrls()) {
-            $adGroupCriterion->setFinalUrls($this->config->getFinalUrls());
-        }
-
-        // Set bids if given in the config.
-        if ($this->config->getBid()) {
-            $adGroupCriterion->setBiddingStrategyConfiguration($this->setBiddingConfiguration());
-        }
-
-        $operation = new AdGroupCriterionOperation();
-        $operation->setOperand($adGroupCriterion);
-        $operation->setOperator(Operator::ADD);
-
-
-        // Mutate the operation.
-        $this->operationResult = $this->adGroupCriterionService->mutate([$operation]);
     }
 
     /**
@@ -125,18 +91,14 @@ class Keyword extends Entity implements EntityInterface {
         $this->operationResult = $this->adGroupCriterionService->mutate([$operation]);
     }
 
-    /**
-     * Create a bidding strategy configuration object based on the config.
-     * @return BiddingStrategyConfiguration
-     */
-    private function setBiddingConfiguration() {
-        $bid = new CpcBid();
-        $money = new Money();
-        $money->setMicroAmount($this->config->getBid() * 1000000);
-        $bid->setBid($money);
-        $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-        $biddingStrategyConfiguration->setBids([$bid]);
-        return $biddingStrategyConfiguration;
+
+    private function addSingleKeyword() {
+
+        // Create the keyword operation.
+        $operation = $this->createKeywordOperation($this->config);
+
+        // Mutate the operation.
+        $this->operationResult = $this->adGroupCriterionService->mutate([$operation]);
     }
 
     /**
@@ -171,35 +133,4 @@ class Keyword extends Entity implements EntityInterface {
         return $this;
     }
 
-    /**
-     * @return \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient
-     */
-    public function getAdGroupCriterionService() {
-        return $this->adGroupCriterionService;
-    }
-
-    /**
-     * @param \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient $adGroupCriterionService
-     * @return Keyword
-     */
-    public function setAdGroupCriterionService($adGroupCriterionService) {
-        $this->adGroupCriterionService = $adGroupCriterionService;
-        return $this;
-    }
-
-    /**
-     * @return \Google\AdsApi\AdWords\v201609\cm\Keyword
-     */
-    public function getAdGroupCriterionObject() {
-        return $this->adGroupCriterionObject;
-    }
-
-    /**
-     * @param \Google\AdsApi\AdWords\v201609\cm\Keyword $adGroupCriterionObject
-     * @return Keyword
-     */
-    public function setAdGroupCriterionObject($adGroupCriterionObject) {
-        $this->adGroupCriterionObject = $adGroupCriterionObject;
-        return $this;
-    }
 }

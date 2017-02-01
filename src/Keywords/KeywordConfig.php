@@ -53,6 +53,7 @@ class KeywordConfig extends Config {
         if (isset($config['status'])) {
             $this->status = $config['status'];
         }
+
     }
 
 

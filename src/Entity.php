@@ -28,6 +28,7 @@ class Entity extends Base {
     /**
      * Download all the keywords that meet the given config criteria.
      * Useful if the list needs to be re-downloaded.
+     * @param Config $config
      * @param $adwordsService
      * @return
      */
