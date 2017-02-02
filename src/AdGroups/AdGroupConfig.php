@@ -31,7 +31,7 @@ class AdGroupConfig extends Config {
     protected $adGroupId;
 
     /**
-     * @var Google\AdsApi\AdWords\v201609\cm\AdGroupStatus  The status of the ad group, must be an AdGroupStatus instance.
+     * @var AdGroupStatus   The status of the ad group, must be an AdGroupStatus instance.
      */
     protected $status;
 
@@ -70,6 +70,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Get the campaign ID.
      * @return mixed
      */
     public function getCampaignId() {
@@ -77,6 +78,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Set the campaign ID.
      * @param mixed $campaignId
      * @return AdGroupConfig
      */
@@ -86,6 +88,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Get the ad group name.
      * @return mixed
      */
     public function getAdGroupName() {
@@ -93,6 +96,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Set the ad group name.
      * @param mixed $adGroupName
      * @return AdGroupConfig
      */
@@ -102,6 +106,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Get the ad group status.
      * @return mixed
      */
     public function getStatus() {
@@ -109,6 +114,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Set the ad group status.
      * @param mixed $status
      * @return AdGroupConfig
      */
@@ -118,6 +124,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Get the ad group bid.
      * @return mixed
      */
     public function getBid() {
@@ -125,6 +132,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Set the ad group bid.
      * @param mixed $bid
      * @return AdGroupConfig
      */
@@ -134,6 +142,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Get the ad group ID.
      * @return mixed
      */
     public function getAdGroupId() {
@@ -141,6 +150,7 @@ class AdGroupConfig extends Config {
     }
 
     /**
+     * Set the ad group ID.
      * @param mixed $adGroupId
      * @return AdGroupConfig
      */

@@ -43,11 +43,6 @@ class Campaign extends Entity implements EntityInterface {
     protected $campaignService;
 
     /**
-     * @var string              ID of the campaign.
-     */
-    protected $campaignId;
-
-    /**
      * @var null|array                List of the downloaded campaigns.
      */
     protected $campaigns;
@@ -292,24 +287,6 @@ class Campaign extends Entity implements EntityInterface {
      */
     public function setCampaignService($campaignService) {
         $this->campaignService = $campaignService;
-        return $this;
-    }
-
-    /**
-     * Get campaign ID.
-     * @return mixed
-     */
-    public function getCampaignId() {
-        return $this->campaignId;
-    }
-
-    /**
-     * Set campaign ID.
-     * @param mixed $campaignId
-     * @return Campaign
-     */
-    public function setCampaignId($campaignId) {
-        $this->campaignId = $campaignId;
         return $this;
     }
 

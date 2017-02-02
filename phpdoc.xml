@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+	<title>Easy AdWords Auto-Documentation</title>
+  	<parser>
+  	  	<target>docs/generated</target>
+  	</parser>
+  	<transformer>
+  	  	<target>docs/generated</target>
+  	</transformer>
+  	<files>
+  	  	<directory>./src</directory>
+  </files>
+</phpdoc>

@@ -135,6 +135,7 @@ class AdGroup extends Entity implements EntityInterface {
     }
 
     /**
+     * Get the config object.
      * @return AdGroupConfig
      */
     public function getConfig() {
@@ -142,6 +143,7 @@ class AdGroup extends Entity implements EntityInterface {
     }
 
     /**
+     * Set the config object.
      * @param AdGroupConfig $config
      * @return AdGroup
      */
@@ -151,6 +153,7 @@ class AdGroup extends Entity implements EntityInterface {
     }
 
     /**
+     * Get the list of ad groups.
      * @return null
      */
     public function getAdGroups() {
@@ -158,6 +161,7 @@ class AdGroup extends Entity implements EntityInterface {
     }
 
     /**
+     * Get the list of ad groups.
      * @param null $adGroups
      * @return AdGroup
      */
@@ -167,6 +171,7 @@ class AdGroup extends Entity implements EntityInterface {
     }
 
     /**
+     * Get the AdGroupService object.
      * @return \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient
      */
     public function getAdGroupService() {
@@ -174,6 +179,7 @@ class AdGroup extends Entity implements EntityInterface {
     }
 
     /**
+     * Set the AdGroupService object.
      * @param \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient $adGroupService
      * @return AdGroup
      */

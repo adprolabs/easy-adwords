@@ -175,6 +175,7 @@ class CampaignConfig extends Config {
 
 
     /**
+     * Get the advertising channel type.
      * @return mixed
      */
     public function getAdvertisingChannelType() {
@@ -182,6 +183,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the advertising channel type.
      * @param mixed $advertisingChannelType
      * @return CampaignConfig
      */
@@ -191,6 +193,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the status of the campaign.
      * @return mixed
      */
     public function getStatus() {
@@ -198,6 +201,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the status of the campaign.
      * @param mixed $status
      * @return CampaignConfig
      */
@@ -207,6 +211,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the budget of the campaign.
      * @return mixed
      */
     public function getBudget() {
@@ -214,6 +219,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the budget of the campaign.
      * @param mixed $budget
      * @return CampaignConfig
      */
@@ -223,6 +229,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the budget name.
      * @return string
      */
     public function getBudgetName() {
@@ -230,6 +237,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the budget name.
      * @param string $budgetName
      * @return CampaignConfig
      */
@@ -239,6 +247,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the bidding strategy type.
      * @return mixed
      */
     public function getBiddingStrategyType() {
@@ -246,6 +255,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the bidding strategy type.
      * @param mixed $biddingStrategyType
      * @return CampaignConfig
      */
@@ -255,6 +265,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the budget delivery method.
      * @return mixed
      */
     public function getBudgetDeliveryMethod() {
@@ -262,6 +273,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the budget delivery method.
      * @param mixed $budgetDeliveryMethod
      * @return CampaignConfig
      */
@@ -271,6 +283,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the target google search value.
      * @return mixed
      */
     public function getTargetGoogleSearch() {
@@ -278,6 +291,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the target google search value.
      * @param mixed $targetGoogleSearch
      * @return CampaignConfig
      */
@@ -287,6 +301,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the target search network value.
      * @return mixed
      */
     public function getTargetSearchNetwork() {
@@ -294,6 +309,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the target search network value.
      * @param mixed $targetSearchNetwork
      * @return CampaignConfig
      */
@@ -303,6 +319,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the target content network value.
      * @return mixed
      */
     public function getTargetContentNetwork() {
@@ -310,6 +327,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the target content network value.
      * @param mixed $targetContentNetwork
      * @return CampaignConfig
      */
@@ -319,6 +337,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the start date of the campaign.
      * @return false|string
      */
     public function getStartDate() {
@@ -326,6 +345,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the start date of the campaign.
      * @param false|string $startDate
      * @return CampaignConfig
      */
@@ -335,6 +355,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the end date of the campaign.
      * @return false|string
      */
     public function getEndDate() {
@@ -342,6 +363,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the end date of the campaign.
      * @param false|string $endDate
      * @return CampaignConfig
      */
@@ -351,6 +373,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the ad serving optimization status.
      * @return mixed
      */
     public function getAdServingOptimizationStatus() {
@@ -358,6 +381,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the ad serving optimization status.
      * @param mixed $adServingOptimizationStatus
      * @return CampaignConfig
      */
@@ -367,6 +391,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the name of the campaign.
      * @return mixed
      */
     public function getCampaignName() {
@@ -374,6 +399,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the name of the campaign.
      * @param mixed $campaignName
      * @return CampaignConfig
      */
@@ -383,6 +409,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the serving status of the campaign.
      * @return string
      */
     public function getServingStatus() {
@@ -390,6 +417,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the serving status of the campaign.
      * @param $servingStatus
      * @return $this
      */
@@ -399,6 +427,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Get the ID of the campaign.
      * @return mixed
      */
     public function getCampaignId() {
@@ -406,6 +435,7 @@ class CampaignConfig extends Config {
     }
 
     /**
+     * Set the ID of the campaign.
      * @param mixed $campaignId
      * @return CampaignConfig
      */

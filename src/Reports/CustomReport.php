@@ -2,16 +2,15 @@
 
 namespace EasyAdwords\Reports;
 
-use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
-
 /**
- * Class SearchQueryPerformanceReport
+ * Report class that deals with custom report needs.
+ * Class FinalUrlReport
  * @package EasyAdwords\Reports
  */
-class SearchQueryPerformanceReport extends Report implements ReportInterface {
+class CustomReport extends Report implements ReportInterface {
 
     /**
-     * SearchQueryPerformanceReport constructor.
+     * FinalUrlReport constructor.
      * @param ReportConfig $config
      */
     public function __construct(ReportConfig $config) {
@@ -20,10 +19,11 @@ class SearchQueryPerformanceReport extends Report implements ReportInterface {
 
     /**
      * Download the raw CSV report from AdWords and store in the object.
+     * @param null $reportType
      * @return $this
      */
-    public function download() {
-        $this->downloadRawReport(ReportDefinitionReportType::SEARCH_QUERY_PERFORMANCE_REPORT);
+    public function download($reportType = NULL) {
+        $this->downloadRawReport($reportType);
         return $this;
     }
 
