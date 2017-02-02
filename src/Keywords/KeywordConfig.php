@@ -3,6 +3,8 @@
 namespace EasyAdwords\Keywords;
 
 use EasyAdwords\Config;
+use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
+use Google\AdsApi\AdWords\v201609\cm\UserStatus;
 
 /**
  * Config class for Keyword class.
@@ -11,14 +13,46 @@ use EasyAdwords\Config;
  * @package EasyAdwords\Keywords
  */
 class KeywordConfig extends Config {
+
+    /**
+     * @var array               List of the downloaded keywords.
+     */
     protected $keyword;
+
+    /**
+     * @var string              ID of the keyword to operate on.
+     */
     protected $keywordId;
-    protected $matchType;   // must be type of "Google\AdsApi\AdWords\v201609\cm\KeywordMatchType".
+
+    /**
+     * @var KeywordMatchType    Match type of the keyword.
+     */
+    protected $matchType;
+
+    /**
+     * @var array               Array of the final URLs for the keyword.
+     */
     protected $finalUrls;
+
+    /**
+     * @var string              ID of the ad group of the keyword.
+     */
     protected $adGroupId;
+
+    /**
+     * @var integer             Bid of the keyword.
+     */
     protected $bid;
+
+    /**
+     * @var UserStatus          Status of the keyword.
+     */
     protected $status;
 
+    /**
+     * KeywordConfig constructor.
+     * @param array $config
+     */
     public function __construct(array $config) {
         parent::__construct($config);
 
@@ -63,14 +97,16 @@ class KeywordConfig extends Config {
     }
 
     /**
-     * @return mixed
+     * Get keyword.
+     * @return array
      */
     public function getKeyword() {
         return $this->keyword;
     }
 
     /**
-     * @param mixed $keyword
+     * Set keyword.
+     * @param array $keyword
      * @return KeywordConfig
      */
     public function setKeyword($keyword) {
@@ -79,14 +115,34 @@ class KeywordConfig extends Config {
     }
 
     /**
-     * @return mixed
+     * Get keyword ID.
+     * @return string
+     */
+    public function getKeywordId() {
+        return $this->keywordId;
+    }
+
+    /**
+     * Set keyword ID.
+     * @param string $keywordId
+     * @return KeywordConfig
+     */
+    public function setKeywordId($keywordId) {
+        $this->keywordId = $keywordId;
+        return $this;
+    }
+
+    /**
+     * Get keyword match type.
+     * @return KeywordMatchType
      */
     public function getMatchType() {
         return $this->matchType;
     }
 
     /**
-     * @param mixed $matchType
+     * Set keyword match type.
+     * @param KeywordMatchType $matchType
      * @return KeywordConfig
      */
     public function setMatchType($matchType) {
@@ -95,14 +151,16 @@ class KeywordConfig extends Config {
     }
 
     /**
-     * @return array|mixed
+     * Get final URLs.
+     * @return array
      */
     public function getFinalUrls() {
         return $this->finalUrls;
     }
 
     /**
-     * @param array|mixed $finalUrls
+     * Set final URLs.
+     * @param array $finalUrls
      * @return KeywordConfig
      */
     public function setFinalUrls($finalUrls) {
@@ -111,14 +169,16 @@ class KeywordConfig extends Config {
     }
 
     /**
-     * @return mixed
+     * Get ad group ID.
+     * @return string
      */
     public function getAdGroupId() {
         return $this->adGroupId;
     }
 
     /**
-     * @param mixed $adGroupId
+     * Set ad group ID.
+     * @param string $adGroupId
      * @return KeywordConfig
      */
     public function setAdGroupId($adGroupId) {
@@ -127,14 +187,16 @@ class KeywordConfig extends Config {
     }
 
     /**
-     * @return mixed
+     * Get bid of the keyword.
+     * @return int
      */
     public function getBid() {
         return $this->bid;
     }
 
     /**
-     * @param mixed $bid
+     * Set bid of the keyword.
+     * @param int $bid
      * @return KeywordConfig
      */
     public function setBid($bid) {
@@ -143,34 +205,20 @@ class KeywordConfig extends Config {
     }
 
     /**
-     * @return mixed
+     * Get status of the keyword.
+     * @return UserStatus
      */
     public function getStatus() {
         return $this->status;
     }
 
     /**
-     * @param mixed $status
+     * Set status of the keyword.
+     * @param UserStatus $status
      * @return KeywordConfig
      */
     public function setStatus($status) {
         $this->status = $status;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getKeywordId() {
-        return $this->keywordId;
-    }
-
-    /**
-     * @param $keywordId
-     * @return $this
-     */
-    public function setKeywordId($keywordId) {
-        $this->keywordId = $keywordId;
         return $this;
     }
 }

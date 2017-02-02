@@ -3,6 +3,7 @@
 namespace EasyAdwords\Campaigns;
 
 use EasyAdwords\Config;
+use Google\AdsApi\AdWords\v201609\cm\AdServingOptimizationStatus;
 use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
 use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
@@ -19,22 +20,85 @@ use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
  */
 class CampaignConfig extends Config {
 
+    /**
+     * @var string                          ID of the campaign.
+     */
     protected $campaignId;
-    protected $campaignName;
-    protected $advertisingChannelType;      // must be type of "Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType".
-    protected $status;                      // must be type of "Google\AdsApi\AdWords\v201609\cm\CampaignStatus".
-    protected $budget;
-    protected $budgetName;
-    protected $biddingStrategyType;         // must be type of "Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType".
-    protected $budgetDeliveryMethod;        // must be type of "Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod".
-    protected $targetGoogleSearch;          // boolean
-    protected $targetSearchNetwork;         // boolean
-    protected $targetContentNetwork;        // boolean
-    protected $startDate;
-    protected $endDate;
-    protected $adServingOptimizationStatus; // must be type of Google\AdsApi\AdWords\v201609\cm\AdServingOptimizationStatus´.
-    protected $servingStatus;               // must be type of Google\AdsApi\AdWords\v201609\cm\ServingStatus´.
 
+    /**
+     * @var string                          Name of the campaign.
+     */
+    protected $campaignName;
+
+    /**
+     * @var AdvertisingChannelType          Advertising channel of the campaign. Default is 'SEARCH'.
+     */
+    protected $advertisingChannelType;
+
+    /**
+     * @var CampaignStatus                  Status of the campaign. Default is 'PAUSED'.
+     */
+    protected $status;
+
+    /**
+     * @var integer                         Budget of the campaign, e.g. 50 means 50$. Default is 50.
+     */
+    protected $budget;
+
+    /**
+     * @var string                          Name of the budget.
+     */
+    protected $budgetName;
+
+    /**
+     * @var BiddingStrategyType             Bidding strategy type of the campaign. Default is 'MANUAL_CPC'.
+     */
+    protected $biddingStrategyType;
+
+    /**
+     * @var BudgetBudgetDeliveryMethod      Budget delivery method of the campaign. Default is 'STANDARD'.
+     */
+    protected $budgetDeliveryMethod;
+
+    /**
+     * @var boolean                         Target Google search if true. Default is true.
+     */
+    protected $targetGoogleSearch;
+
+    /**
+     * @var boolean                         Target search network if true. Default is true.
+     */
+    protected $targetSearchNetwork;
+
+    /**
+     * @var boolean                         Target content network if true. Default is true.
+     */
+    protected $targetContentNetwork;
+
+    /**
+     * @var false|string                    Start date of the campaign. Default is today.
+     */
+    protected $startDate;
+
+    /**
+     * @var false|string                    End date of the campaign.
+     */
+    protected $endDate;
+
+    /**
+     * @var AdServingOptimizationStatus     Ad serving optimization status of the campaign.
+     */
+    protected $adServingOptimizationStatus;
+
+    /**
+     * @var ServingStatus                   Serving status of the campaign. Default is 'SERVING'.
+     */
+    protected $servingStatus;
+
+    /**
+     * CampaignConfig constructor.
+     * @param array $config
+     */
     public function __construct(array $config) {
         parent::__construct($config);
 

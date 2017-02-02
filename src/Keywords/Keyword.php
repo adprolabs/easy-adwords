@@ -19,10 +19,20 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
  */
 class Keyword extends KeywordBase implements EntityInterface {
 
+    /**
+     * @var KeywordConfig                   Keyword config object to operate on.
+     */
     protected $config;
-    protected $keywords;
-    protected $adGroupCriterionObject;
 
+    /**
+     * @var null|array                      The list of keywords, result of the get operation.
+     */
+    protected $keywords;
+
+    /**
+     * Keyword constructor.
+     * @param KeywordConfig $config
+     */
     public function __construct(KeywordConfig $config) {
         parent::__construct($config);
 
@@ -109,6 +119,7 @@ class Keyword extends KeywordBase implements EntityInterface {
     }
 
     /**
+     * Get config object.
      * @return KeywordConfig
      */
     public function getConfig() {
@@ -116,6 +127,7 @@ class Keyword extends KeywordBase implements EntityInterface {
     }
 
     /**
+     * Set config object.
      * @param KeywordConfig $config
      * @return Keyword
      */
@@ -125,6 +137,7 @@ class Keyword extends KeywordBase implements EntityInterface {
     }
 
     /**
+     * Get keywords.
      * @return null
      */
     public function getKeywords() {
@@ -132,6 +145,7 @@ class Keyword extends KeywordBase implements EntityInterface {
     }
 
     /**
+     * Set keywords.
      * @param null $keywords
      * @return Keyword
      */

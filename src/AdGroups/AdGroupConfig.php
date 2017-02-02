@@ -15,10 +15,29 @@ use Google\AdsApi\AdWords\v201609\cm\AdGroupStatus;
  */
 class AdGroupConfig extends Config {
 
+    /**
+     * @var string          The campaign ID of the ad group.
+     */
     protected $campaignId;
+
+    /**
+     * @var string          The name of the ad group.
+     */
     protected $adGroupName;
+
+    /**
+     * @var string          The ID of the ad group to operate on.
+     */
     protected $adGroupId;
-    protected $status; // must be an instance of "Google\AdsApi\AdWords\v201609\cm\AdGroupStatus" class.
+
+    /**
+     * @var Google\AdsApi\AdWords\v201609\cm\AdGroupStatus  The status of the ad group, must be an AdGroupStatus instance.
+     */
+    protected $status;
+
+    /**
+     * @var integer         The bid amount to give the ad group, without extra zeros, e.g. 50 means 50$.
+     */
     protected $bid;
 
     public function __construct(array $config) {

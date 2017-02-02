@@ -8,12 +8,15 @@ use EasyAdwords\Reports\ReportInterface;
 use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
 
 /**
- * Report class that deals with Search Query Performance Report.
  * Class SearchQueryPerformanceReport
  * @package App\AdPro\Reports
  */
 class SearchQueryPerformanceReport extends Report implements ReportInterface {
 
+    /**
+     * SearchQueryPerformanceReport constructor.
+     * @param ReportConfig $config
+     */
     public function __construct(ReportConfig $config) {
         parent::__construct($config);
     }

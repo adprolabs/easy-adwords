@@ -2,15 +2,46 @@
 
 namespace EasyAdwords;
 
+/**
+ * Class Config
+ * @package EasyAdwords
+ */
 class Config extends Base {
 
-    protected $refreshToken;        // required.
-    protected $clientCustomerId;    // required.
-    protected $adwordsConfigPath;
-    protected $fields;
-    protected $predicates;          // must be type of an array of "Google\AdsApi\AdWords\v201609\cm\Predicate" objects.
-    protected $ordering;            // must be type of an array of "Google\AdsApi\AdWords\v201609\cm\OrderBy" objects.
+    /**
+     * @var string                   Refresh token of the user - required.
+     */
+    protected $refreshToken;
 
+    /**
+     * @var string                  The client customer ID of the account - required.
+     */
+    protected $clientCustomerId;
+
+    /**
+     * @var string                  Path to the AdWords configuration file. If not given, looks for 'adsapi_php.ini' in the project root.
+     */
+    protected $adwordsConfigPath;
+
+    /**
+     * @var array                   Fields for the operation.
+     */
+    protected $fields;
+
+    /**
+     * @var array                   The predicates array, must be an array of "Predicate" objects.
+     */
+    protected $predicates;
+    /**
+     * @var array                   The ordering array, must be an array of "OrderBy" objects.
+     */
+    protected $ordering;
+
+    /**
+     * Config constructor.
+     * @param array $config
+     * @throws \Exception
+     */
     public function __construct(array $config) {
 
         $this->refreshToken = NULL;
@@ -57,14 +88,16 @@ class Config extends Base {
 
 
     /**
-     * @return mixed
+     * Get the refresh token.
+     * @return string
      */
     public function getRefreshToken() {
         return $this->refreshToken;
     }
 
     /**
-     * @param mixed $refreshToken
+     * Set the refresh token.
+     * @param string $refreshToken
      * @return Config
      */
     public function setRefreshToken($refreshToken) {
@@ -73,14 +106,16 @@ class Config extends Base {
     }
 
     /**
-     * @return mixed
+     * Get the client customer ID.
+     * @return string
      */
     public function getClientCustomerId() {
         return $this->clientCustomerId;
     }
 
     /**
-     * @param mixed $clientCustomerId
+     * Set the client customer ID.
+     * @param string $clientCustomerId
      * @return Config
      */
     public function setClientCustomerId($clientCustomerId) {
@@ -89,6 +124,7 @@ class Config extends Base {
     }
 
     /**
+     * Get the AdWords config file path.
      * @return mixed
      */
     public function getAdwordsConfigPath() {
@@ -96,6 +132,7 @@ class Config extends Base {
     }
 
     /**
+     * Set the AdWords config file path.
      * @param mixed $adwordsConfigPath
      * @return Config
      */
@@ -105,6 +142,7 @@ class Config extends Base {
     }
 
     /**
+     * Set the fields.
      * @return mixed
      */
     public function getFields() {
@@ -112,6 +150,7 @@ class Config extends Base {
     }
 
     /**
+     * Get the fields.
      * @param mixed $fields
      * @return Config
      */
@@ -121,6 +160,7 @@ class Config extends Base {
     }
 
     /**
+     * Get the predicates.
      * @return array|mixed
      */
     public function getPredicates() {
@@ -128,6 +168,7 @@ class Config extends Base {
     }
 
     /**
+     * Set the predicates.
      * @param array|mixed $predicates
      * @return Config
      */
@@ -137,6 +178,7 @@ class Config extends Base {
     }
 
     /**
+     * Add an individual predicate to predicates.
      * @param $predicate
      */
     public function addPredicate($predicate) {
@@ -144,6 +186,7 @@ class Config extends Base {
     }
 
     /**
+     * Get the ordering.
      * @return mixed
      */
     public function getOrdering() {
@@ -151,6 +194,7 @@ class Config extends Base {
     }
 
     /**
+     * Set the ordering.
      * @param mixed $ordering
      * @return Config
      */

@@ -15,10 +15,25 @@ use Google\AdsApi\AdWords\v201609\cm\Selector;
  */
 class Entity extends Base {
 
+    /**
+     * @var array                   Result of the completed operation.
+     */
     protected $operationResult;
+
+    /**
+     * @var AdWordsAuth             The auth object for the operation.
+     */
     protected $authObject;
+
+    /**
+     * @var AdWordsServices         The AdWordsServices object for the operation.
+     */
     protected $adWordsServices;
 
+    /**
+     * Entity constructor.
+     * @param Config $config
+     */
     public function __construct(Config $config) {
 
         $this->adWordsServices = new AdWordsServices();
@@ -60,6 +75,7 @@ class Entity extends Base {
 
 
     /**
+     * Get the operation result.
      * @return mixed
      */
     public function getOperationResult() {
@@ -67,6 +83,7 @@ class Entity extends Base {
     }
 
     /**
+     * Set the operation result.
      * @param mixed $operationResult
      * @return Entity
      */
@@ -76,6 +93,7 @@ class Entity extends Base {
     }
 
     /**
+     * Get the auth object.
      * @return AdWordsAuth
      */
     public function getAuthObject() {
@@ -83,6 +101,7 @@ class Entity extends Base {
     }
 
     /**
+     * Set the auth object.
      * @param AdWordsAuth $authObject
      * @return Entity
      */
@@ -92,6 +111,7 @@ class Entity extends Base {
     }
 
     /**
+     * Get the AdWordsServices object.
      * @return AdWordsServices
      */
     public function getAdWordsServices() {
@@ -99,6 +119,7 @@ class Entity extends Base {
     }
 
     /**
+     * Set the AdWordsServices object.
      * @param AdWordsServices $adWordsServices
      * @return Entity
      */

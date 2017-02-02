@@ -4,54 +4,97 @@ namespace EasyAdwords\Reports;
 
 use EasyAdwords\Config;
 
+/**
+ * Report config class to use with report objects.
+ *
+ * Class ReportConfig
+ * @package EasyAdwords\Reports
+ */
 class ReportConfig extends Config {
 
-    protected $dateStart;
-    protected $dateEnd;
+    /**
+     * @var string              Start date of the report.
+     */
+    protected $startDate;
+    /**
+     * @var string              End date of the report.
+     */
+    protected $endDate;
+    /**
+     * @var array               Array of predicates to filter the report.
+     */
     protected $predicates;
 
+    /**
+     * ReportConfig constructor.
+     * @param array $config
+     */
     public function __construct(array $config = array()) {
 
         parent::__construct($config);
 
         $this->fields = array();
 
-        if (isset($config['dateStart'])) {
-            $this->dateStart = $config['dateStart'];
+        if (isset($config['startDate'])) {
+            $this->startDate = $config['startDate'];
         }
 
-        if (isset($config['dateEnd'])) {
-            $this->dateEnd = $config['dateEnd'];
+        if (isset($config['endDate'])) {
+            $this->endDate = $config['endDate'];
         }
     }
 
     /**
+     * Get the start date of the report.
      * @return null
      */
-    public function getDateStart() {
-        return $this->dateStart;
+    public function getStartDate() {
+        return $this->startDate;
     }
 
     /**
-     * @param null $dateStart
+     * Set the start date of the report.
+     * @param null $startDate
+     * @return $this
      */
-    public function setDateStart($dateStart) {
-        $this->dateStart = $dateStart;
+    public function setStartDate($startDate) {
+        $this->startDate = $startDate;
+        return $this;
     }
 
     /**
+     * Get the end date of the report.
      * @return null
      */
-    public function getDateEnd() {
-        return $this->dateEnd;
+    public function getEndDate() {
+        return $this->endDate;
     }
 
     /**
-     * @param null $dateEnd
+     * Set the start date of the report.
+     * @param null $endDate
+     * @return $this
      */
-    public function setDateEnd($dateEnd) {
-        $this->dateEnd = $dateEnd;
+    public function setEndDate($endDate) {
+        $this->endDate = $endDate;
+        return $this;
     }
 
+    /**
+     * Get the report predicates.
+     * @return array
+     */
+    public function getPredicates() {
+        return $this->predicates;
+    }
 
+    /**
+     * Set the report predicates.
+     * @param array $predicates
+     * @return ReportConfig
+     */
+    public function setPredicates($predicates) {
+        $this->predicates = $predicates;
+        return $this;
+    }
 }

@@ -27,12 +27,35 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
  */
 class Campaign extends Entity implements EntityInterface {
 
+    /**
+     * @var \Google\AdsApi\AdWords\v201609\cm\Campaign  The campaign object that will be used in operations.
+     */
     protected $campaignObject;
+
+    /**
+     * @var CampaignConfig          Config object that is used accross the operations.
+     */
     protected $config;
+
+    /**
+     * @var \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient  Campaign service to connect.
+     */
     protected $campaignService;
+
+    /**
+     * @var string              ID of the campaign.
+     */
     protected $campaignId;
+
+    /**
+     * @var null|array                List of the downloaded campaigns.
+     */
     protected $campaigns;
 
+    /**
+     * Campaign constructor.
+     * @param CampaignConfig $config
+     */
     public function __construct(CampaignConfig $config) {
 
         parent::__construct($config);
@@ -183,6 +206,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Get campaign object.
      * @return \Google\AdsApi\AdWords\v201609\cm\Campaign
      */
     public function getCampaignObject() {
@@ -190,6 +214,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Set campaign object.
      * @param \Google\AdsApi\AdWords\v201609\cm\Campaign $campaignObject
      * @return Campaign
      */
@@ -199,6 +224,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Get config.
      * @return CampaignConfig
      */
     public function getConfig() {
@@ -206,6 +232,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Set config.
      * @param CampaignConfig $config
      * @return Campaign
      */
@@ -215,6 +242,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Get auth object.
      * @return AdWordsAuth
      */
     public function getAuthObject() {
@@ -222,6 +250,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Set auth object.
      * @param AdWordsAuth $authObject
      * @return Campaign
      */
@@ -231,6 +260,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Get AdWords service.
      * @return AdWordsServices
      */
     public function getAdWordsServices() {
@@ -238,6 +268,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Set AdWords service.
      * @param AdWordsServices $adWordsServices
      * @return Campaign
      */
@@ -247,6 +278,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Get campaign service.
      * @return \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient
      */
     public function getCampaignService() {
@@ -254,6 +286,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Set campaign service.
      * @param \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient $campaignService
      * @return Campaign
      */
@@ -263,6 +296,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Get campaign ID.
      * @return mixed
      */
     public function getCampaignId() {
@@ -270,6 +304,7 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
+     * Set campaign ID.
      * @param mixed $campaignId
      * @return Campaign
      */
@@ -279,13 +314,15 @@ class Campaign extends Entity implements EntityInterface {
     }
 
     /**
-     * @return null
+     * Get campaigns.
+     * @return null|array
      */
     public function getCampaigns() {
         return $this->campaigns;
     }
 
     /**
+     * Set campaigns.
      * @param null $campaigns
      * @return Campaign
      */

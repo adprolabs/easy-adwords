@@ -1,0 +1,2 @@
+### EasyAdwords - an easy-to-use wrapper for Google AdWords PHP Client library
+EasyAdwords is an easy-to-use and customizable library that simplifies the basic usage cases of the AdWords API with PHP Client library. It basically allows simpler reporting process with downloading and parsing the report, and also allows entity operations such as **getting**, **creating** and **removing** campaigns, ad groups and keywords.

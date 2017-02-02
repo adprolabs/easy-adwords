@@ -15,11 +15,32 @@ use Google\Auth\OAuth2;
  */
 class AdWordsAuth {
 
+    /**
+     * @var string                  Refresh token of the client to authenticate - required.
+     */
     protected $refreshToken;
+
+    /**
+     * @var string                  The path of the config file for the AdWords Client library - required.
+     * If not given, the package looks for "adsapi_php.ini" config file in the root of the project.
+     */
     protected $configFilePath;
+
+    /**
+     * @var Google\Auth\Credentials\UserRefreshCredentials The built oAuth object.
+     */
     protected $oAuthCredentials;
+
+    /**
+     * @var AdWordsSession          The session variable that is built from the given oAuth credentials.
+     */
     protected $session;
 
+    /**
+     * AdWordsAuth constructor.
+     * @param null $refreshToken
+     * @param null $configFilePath
+     */
     public function __construct($refreshToken = NULL, $configFilePath = NULL) {
         $this->refreshToken = $refreshToken;
         $this->configFilePath = $configFilePath;
@@ -30,6 +51,7 @@ class AdWordsAuth {
     }
 
     /**
+     * Get refresh token.
      * @return mixed
      */
     public function getRefreshToken() {
@@ -37,7 +59,7 @@ class AdWordsAuth {
     }
 
     /**
-     * Set the refresh token.
+     * Set refresh token.
      * @param $refreshToken
      * @return $this
      */
@@ -90,6 +112,7 @@ class AdWordsAuth {
     }
 
     /**
+     * Get oAuth credentials.
      * @return mixed
      */
     public function getOAuthCredentials() {
@@ -97,6 +120,7 @@ class AdWordsAuth {
     }
 
     /**
+     * Set oAuth credentials.
      * @param $oAuthCredentials
      * @return $this
      */
@@ -106,6 +130,7 @@ class AdWordsAuth {
     }
 
     /**
+     * Get AdWords session.
      * @return mixed
      */
     public function getSession() {
@@ -113,6 +138,7 @@ class AdWordsAuth {
     }
 
     /**
+     * Set AdWords session.
      * @param AdWordsSession $session
      * @return $this
      */

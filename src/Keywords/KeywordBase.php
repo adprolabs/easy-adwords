@@ -22,8 +22,15 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
  */
 class KeywordBase extends Entity {
 
+    /**
+     * @var \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient    The Ad Group Criterion Service object.
+     */
     protected $adGroupCriterionService;
 
+    /**
+     * KeywordBase constructor.
+     * @param Config $config
+     */
     public function __construct(Config $config) {
 
         // Construct the parent class.
@@ -96,6 +103,7 @@ class KeywordBase extends Entity {
 
 
     /**
+     * Get Ad Group Criterion Service object.
      * @return \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient
      */
     public function getAdGroupCriterionService() {
@@ -103,6 +111,7 @@ class KeywordBase extends Entity {
     }
 
     /**
+     * Set Ad Group Criterion Service object.
      * @param \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient $adGroupCriterionService
      * @return KeywordBase
      */

@@ -11,22 +11,35 @@ use Google\AdsApi\AdWords\Reporting\v201609\ReportDownloader;
 use Google\AdsApi\AdWords\v201609\cm\DateRange;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 
+/**
+ * Base report class that deals with different report types.
+ * Class Report
+ * @package EasyAdwords\Reports
+ */
 class Report extends Base {
 
+    /**
+     * @var ReportConfig            Config object of the report.
+     */
     protected $config;
+
+    /**
+     * @var string|array            The downloaded and formatted report result.
+     */
     protected $report;
+
+    /**
+     * @var array                   The headers of the report.
+     */
     protected $reportHeaders;
 
+    /**
+     * Report constructor.
+     * @param ReportConfig $config
+     */
     public function __construct(ReportConfig $config) {
         $this->config = $config;
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReportHeaders() {
-        return $this->reportHeaders;
     }
 
     /**
@@ -43,7 +56,7 @@ class Report extends Base {
         $authObject->buildSession($this->config->getClientCustomerId());
 
         // Create report date range object.
-        $reportDates = new DateRange($this->config->getDateStart(), $this->config->getDateEnd());
+        $reportDates = new DateRange($this->config->getStartDate(), $this->config->getEndDate());
 
         // Create selector.
         $selector = new Selector();
@@ -95,6 +108,7 @@ class Report extends Base {
     }
 
     /**
+     * Get report config.
      * @return ReportConfig
      */
     public function getConfig() {
@@ -102,14 +116,26 @@ class Report extends Base {
     }
 
     /**
-     * @return mixed
+     * Set report config.
+     * @param ReportConfig $config
+     * @return Report
+     */
+    public function setConfig($config) {
+        $this->config = $config;
+        return $this;
+    }
+
+    /**
+     * Get the report result.
+     * @return array|string
      */
     public function getReport() {
         return $this->report;
     }
 
     /**
-     * @param mixed $report
+     * Set the report result.
+     * @param array|string $report
      * @return Report
      */
     public function setReport($report) {
@@ -118,7 +144,16 @@ class Report extends Base {
     }
 
     /**
-     * @param mixed $reportHeaders
+     * Get the report headers.
+     * @return array
+     */
+    public function getReportHeaders() {
+        return $this->reportHeaders;
+    }
+
+    /**
+     * Set the report headers.
+     * @param array $reportHeaders
      * @return Report
      */
     public function setReportHeaders($reportHeaders) {
@@ -126,12 +161,4 @@ class Report extends Base {
         return $this;
     }
 
-    /**
-     * @param ReportConfig $config
-     * @return Report
-     */
-    public function setConfig($config) {
-        $this->config = $config;
-        return $this;
-    }
 }

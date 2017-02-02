@@ -16,17 +16,38 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
 /**
  * Base class for basic ad group operations.
  * Operates based on the given AdGroupConfig object.
+ * Allows basic operations such as creating an ad group, listing ad groups and removing an ad group.
  *
  * Class AdGroup
  * @package EasyAdwords\AdGroups
  */
 class AdGroup extends Entity implements EntityInterface {
 
+
+    /**
+     * @var AdGroupConfig   The config object that is needed for class to operate with.
+     */
     protected $config;
+
+    /**
+     * @var null            The list of ad groups, filled with the result of the get operation.
+     */
     protected $adGroups;
+
+    /**
+     * @var \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient The ad group service - created from AdWords services.
+     */
     protected $adGroupService;
+
+    /**
+     * @var \Google\AdsApi\AdWords\v201609\cm\AdGroup The ad group object that the class will operate with.
+     */
     protected $adGroupObject;
 
+    /**
+     * AdGroup constructor.
+     * @param AdGroupConfig $config
+     */
     public function __construct(AdGroupConfig $config) {
         parent::__construct($config);
 

@@ -11,6 +11,10 @@ use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
  */
 class CampaignPerformanceReport extends Report implements ReportInterface {
 
+    /**
+     * CampaignPerformanceReport constructor.
+     * @param ReportConfig $config
+     */
     public function __construct(ReportConfig $config) {
         parent::__construct($config);
     }
