@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyAdwords;
+namespace EasyAdWords;
 
 
-use EasyAdwords\Auth\AdWordsAuth;
+use EasyAdWords\Auth\AdWordsAuth;
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 
@@ -11,7 +11,7 @@ use Google\AdsApi\AdWords\v201609\cm\Selector;
  * Parent of the various entity classes, such as Campaign, AdGroup and Keyword.
  *
  * Class Entity
- * @package EasyAdwords
+ * @package EasyAdWords
  */
 class Entity extends Base {
 

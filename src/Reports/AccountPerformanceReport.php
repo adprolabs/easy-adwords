@@ -1,13 +1,13 @@
 <?php
 
-namespace EasyAdwords\Reports;
+namespace EasyAdWords\Reports;
 
 use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
 
 /**
  * Report class that deals with Account Performance Report.
  * Class AccountPerformanceReport
- * @package EasyAdwords\Reports
+ * @package EasyAdWords\Reports
  */
 class AccountPerformanceReport extends Report implements ReportInterface {
 

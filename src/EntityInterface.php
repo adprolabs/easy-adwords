@@ -1,13 +1,13 @@
 <?php
 
-namespace EasyAdwords;
+namespace EasyAdWords;
 
 
 /**
  * Interface for different entities to implement.
  *
  * Interface EntityInterface
- * @package EasyAdwords
+ * @package EasyAdWords
  */
 interface EntityInterface {
 

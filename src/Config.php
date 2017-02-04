@@ -1,10 +1,10 @@
 <?php
 
-namespace EasyAdwords;
+namespace EasyAdWords;
 
 /**
  * Class Config
- * @package EasyAdwords
+ * @package EasyAdWords
  */
 class Config extends Base {
 

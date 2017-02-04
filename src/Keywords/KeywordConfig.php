@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyAdwords\Keywords;
+namespace EasyAdWords\Keywords;
 
-use EasyAdwords\Config;
+use EasyAdWords\Config;
 use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
 use Google\AdsApi\AdWords\v201609\cm\UserStatus;
 
@@ -10,12 +10,12 @@ use Google\AdsApi\AdWords\v201609\cm\UserStatus;
  * Config class for Keyword class.
  *
  * Class KeywordConfig
- * @package EasyAdwords\Keywords
+ * @package EasyAdWords\Keywords
  */
 class KeywordConfig extends Config {
 
     /**
-     * @var array               List of the downloaded keywords.
+     * @var array               Name of the keyword.
      */
     protected $keyword;
 
@@ -55,7 +55,7 @@ class KeywordConfig extends Config {
      */
     public function __construct(array $config) {
         parent::__construct($config);
-
+        
         $this->keyword = NULL;
         $this->matchType = NULL;
         $this->finalUrls = NULL;

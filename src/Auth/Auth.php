@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyAdwords\Auth;
+namespace EasyAdWords\Auth;
 
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
@@ -11,7 +11,7 @@ use Google\Auth\OAuth2;
  * Wrapper class for oAuth2 operations.
  *
  * Class AdWordsAuth
- * @package EasyAdwords\Auth
+ * @package EasyAdWords\Auth
  */
 class AdWordsAuth {
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace EasyAdwords\Campaigns;
+namespace EasyAdWords\Campaigns;
 
-use EasyAdwords\Auth\AdWordsAuth;
-use EasyAdwords\Entity;
-use EasyAdwords\EntityInterface;
+use EasyAdWords\Auth\AdWordsAuth;
+use EasyAdWords\Entity;
+use EasyAdWords\EntityInterface;
 use Exception;
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
@@ -23,7 +23,7 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
  * Operates based on the given CampaignConfig object.
  *
  * Class Campaign
- * @package EasyAdwords\Campaigns
+ * @package EasyAdWords\Campaigns
  */
 class Campaign extends Entity implements EntityInterface {
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace EasyAdwords\Reports;
+namespace EasyAdWords\Reports;
 
 use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
 
 /**
  * Report class that deals with Final URL Report.
  * Class FinalUrlReport
- * @package EasyAdwords\Reports
+ * @package EasyAdWords\Reports
  */
 class FinalUrlReport extends Report implements ReportInterface {
 

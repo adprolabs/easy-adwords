@@ -1,13 +1,13 @@
 <?php
 
-namespace EasyAdwords\Reports;
+namespace EasyAdWords\Reports;
 
-use EasyAdwords\Config;
+use EasyAdWords\Config;
 
 /**
  * Interface for the different report objects to implement.
  * Interface ReportInterface
- * @package EasyAdwords\Reports
+ * @package EasyAdWords\Reports
  */
 interface ReportInterface {
 

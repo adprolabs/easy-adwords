@@ -1,12 +1,12 @@
 <?php
 
-namespace EasyAdwords\Keywords;
+namespace EasyAdWords\Keywords;
 
 /**
  * Base class for batch keyword generation operations.
  * Operates based on the given list of KeywordConfig objects.
  * Class KeywordBatch
- * @package EasyAdwords\Keywords
+ * @package EasyAdWords\Keywords
  */
 class KeywordBatch extends KeywordBase {
 

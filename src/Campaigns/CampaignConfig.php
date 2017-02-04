@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyAdwords\Campaigns;
+namespace EasyAdWords\Campaigns;
 
-use EasyAdwords\Config;
+use EasyAdWords\Config;
 use Google\AdsApi\AdWords\v201609\cm\AdServingOptimizationStatus;
 use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
@@ -16,7 +16,7 @@ use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
  * Config class for Campaign class.
  *
  * Class CampaignConfig
- * @package EasyAdwords\Campaigns
+ * @package EasyAdWords\Campaigns
  */
 class CampaignConfig extends Config {
 
@@ -107,7 +107,7 @@ class CampaignConfig extends Config {
         $this->advertisingChannelType = AdvertisingChannelType::SEARCH;
         $this->status = CampaignStatus::PAUSED;
         $this->budget = 50;
-        $this->budgetName = "EasyAdwords Budget #" . uniqid();
+        $this->budgetName = "EasyAdWords Budget #" . uniqid();
         $this->biddingStrategyType = BiddingStrategyType::MANUAL_CPC;
         $this->budgetDeliveryMethod = BudgetBudgetDeliveryMethod::STANDARD;
         $this->targetGoogleSearch = true;

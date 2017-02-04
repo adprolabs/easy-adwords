@@ -1,14 +1,14 @@
 <?php
 
-namespace EasyAdwords\Reports;
+namespace EasyAdWords\Reports;
 
-use EasyAdwords\Config;
+use EasyAdWords\Config;
 
 /**
  * Report config class to use with report objects.
  *
  * Class ReportConfig
- * @package EasyAdwords\Reports
+ * @package EasyAdWords\Reports
  */
 class ReportConfig extends Config {
 

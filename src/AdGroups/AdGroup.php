@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyAdwords\AdGroups;
+namespace EasyAdWords\AdGroups;
 
-use EasyAdwords\Entity;
-use EasyAdwords\EntityInterface;
+use EasyAdWords\Entity;
+use EasyAdWords\EntityInterface;
 use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupOperation;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupService;
@@ -19,7 +19,7 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
  * Allows basic operations such as creating an ad group, listing ad groups and removing an ad group.
  *
  * Class AdGroup
- * @package EasyAdwords\AdGroups
+ * @package EasyAdWords\AdGroups
  */
 class AdGroup extends Entity implements EntityInterface {
 
@@ -71,6 +71,10 @@ class AdGroup extends Entity implements EntityInterface {
 
         if (!$this->config->getBid()) {
             throw new Exception("Bid amount must be set in the config object in order to create ad group.");
+        }
+
+        if (!$this->config->getCampaignId()) {
+            throw new Exception("Campaign ID must be set in the config object in order to create ad group.");
         }
 
         // Create an ad group with required settings and specified status.

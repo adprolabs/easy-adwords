@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyAdwords\Reports;
+namespace EasyAdWords\Reports;
 
-use EasyAdwords\Auth\AdWordsAuth;
-use EasyAdwords\Base;
+use EasyAdWords\Auth\AdWordsAuth;
+use EasyAdWords\Base;
 use Google\AdsApi\AdWords\Reporting\v201609\DownloadFormat;
 use Google\AdsApi\AdWords\Reporting\v201609\ReportDefinition;
 use Google\AdsApi\AdWords\Reporting\v201609\ReportDefinitionDateRangeType;
@@ -14,7 +14,7 @@ use Google\AdsApi\AdWords\v201609\cm\Selector;
 /**
  * Base report class that deals with different report types.
  * Class Report
- * @package EasyAdwords\Reports
+ * @package EasyAdWords\Reports
  */
 class Report extends Base {
 

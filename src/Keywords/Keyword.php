@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyAdwords\Keywords;
+namespace EasyAdWords\Keywords;
 
-use EasyAdwords\EntityInterface;
+use EasyAdWords\EntityInterface;
 use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterion;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
@@ -15,7 +15,7 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
  * Operates based on the given KeywordConfig object.
  *
  * Class Keyword
- * @package EasyAdwords\Keywords
+ * @package EasyAdWords\Keywords
  */
 class Keyword extends KeywordBase implements EntityInterface {
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace EasyAdwords\Keywords;
+namespace EasyAdWords\Keywords;
 
-use EasyAdwords\Config;
+use EasyAdWords\Config;
 
 /**
  * Config class for KeywordBatch class.
  *
  * Class KeywordBatchConfig
- * @package EasyAdwords\Keywords
+ * @package EasyAdWords\Keywords
  */
 class KeywordBatchConfig extends Config {
 

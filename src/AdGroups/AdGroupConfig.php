@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyAdwords\AdGroups;
+namespace EasyAdWords\AdGroups;
 
-use EasyAdwords\Config;
+use EasyAdWords\Config;
 use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupStatus;
 
@@ -11,7 +11,7 @@ use Google\AdsApi\AdWords\v201609\cm\AdGroupStatus;
  * Config class for AdGroup class.
  *
  * Class AdGroupConfig
- * @package EasyAdwords\AdGroups
+ * @package EasyAdWords\AdGroups
  */
 class AdGroupConfig extends Config {
 

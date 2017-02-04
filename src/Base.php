@@ -1,12 +1,12 @@
 <?php
 
-namespace EasyAdwords;
+namespace EasyAdWords;
 
 /**
  * Base class of the package, currently empty.
  *
  * Class Base
- * @package EasyAdwords
+ * @package EasyAdWords
  */
 class Base {
 

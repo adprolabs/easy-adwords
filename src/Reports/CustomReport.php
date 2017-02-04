@@ -1,11 +1,11 @@
 <?php
 
-namespace EasyAdwords\Reports;
+namespace EasyAdWords\Reports;
 
 /**
  * Report class that deals with custom report needs.
  * Class FinalUrlReport
- * @package EasyAdwords\Reports
+ * @package EasyAdWords\Reports
  */
 class CustomReport extends Report implements ReportInterface {
 

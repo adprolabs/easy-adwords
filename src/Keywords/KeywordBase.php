@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyAdwords\Keywords;
+namespace EasyAdWords\Keywords;
 
-use EasyAdwords\Config;
-use EasyAdwords\Entity;
+use EasyAdWords\Config;
+use EasyAdWords\Entity;
 use Exception;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionService;
@@ -18,7 +18,7 @@ use Google\AdsApi\AdWords\v201609\cm\Operator;
  * Main objective is to merge repetitive parts of the both classes into a parent class.
  *
  * Class KeywordBase
- * @package EasyAdwords\Keywords
+ * @package EasyAdWords\Keywords
  */
 class KeywordBase extends Entity {
 
@@ -79,6 +79,8 @@ class KeywordBase extends Entity {
         if ($config->getBid()) {
             $adGroupCriterion->setBiddingStrategyConfiguration($this->setBiddingConfiguration());
         }
+
+        $adGroupCriterio
 
         // Create the operation object.
         $operation = new AdGroupCriterionOperation();
