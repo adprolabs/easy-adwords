@@ -99,7 +99,7 @@ class AdWordsAuth {
      * @param $serviceClass
      * @return \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient
      */
-    public function getAdWordsService(AdsSoapClient $serviceClass){
+    public function getAdWordsService($serviceClass){
         $service = new AdWordsServices();
         $classService = $service->get($this->session, $serviceClass);
         return $classService;
