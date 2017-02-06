@@ -80,8 +80,6 @@ class KeywordBase extends Entity {
             $adGroupCriterion->setBiddingStrategyConfiguration($this->setBiddingConfiguration());
         }
 
-        $adGroupCriterio
-
         // Create the operation object.
         $operation = new AdGroupCriterionOperation();
         $operation->setOperand($adGroupCriterion);

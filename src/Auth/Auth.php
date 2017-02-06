@@ -2,8 +2,10 @@
 
 namespace EasyAdWords\Auth;
 
+use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\Common\AdsSoapClient;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\Auth\OAuth2;
 
@@ -51,24 +53,6 @@ class AdWordsAuth {
     }
 
     /**
-     * Get refresh token.
-     * @return mixed
-     */
-    public function getRefreshToken() {
-        return $this->refreshToken;
-    }
-
-    /**
-     * Set refresh token.
-     * @param $refreshToken
-     * @return $this
-     */
-    public function setRefreshToken($refreshToken) {
-        $this->refreshToken = $refreshToken;
-        return $this;
-    }
-
-    /**
      * Build the oAuth object.
      * @return $this
      */
@@ -108,6 +92,34 @@ class AdWordsAuth {
         }
 
         $this->session = $session->build();
+        return $this;
+    }
+
+    /**
+     * @param $serviceClass
+     * @return \Google\AdsApi\Common\AdsSoapClient|\Google\AdsApi\Common\SoapClient
+     */
+    public function getAdWordsService(AdsSoapClient $serviceClass){
+        $service = new AdWordsServices();
+        $classService = $service->get($this->session, $serviceClass);
+        return $classService;
+    }
+
+    /**
+     * Get refresh token.
+     * @return mixed
+     */
+    public function getRefreshToken() {
+        return $this->refreshToken;
+    }
+
+    /**
+     * Set refresh token.
+     * @param $refreshToken
+     * @return $this
+     */
+    public function setRefreshToken($refreshToken) {
+        $this->refreshToken = $refreshToken;
         return $this;
     }
 
