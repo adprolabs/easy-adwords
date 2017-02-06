@@ -1,5 +1,5 @@
 {
-    "name": "karakanb/easy-adwords",
+    "name": "adprolabs/easy-adwords",
     "description": "A wrapper library to use new AdWords PHP Client library easily.",
     "type": "library",
     "license": "MIT",
