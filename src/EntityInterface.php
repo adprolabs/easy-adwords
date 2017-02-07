@@ -31,11 +31,11 @@ interface EntityInterface {
 
     /**
      * Download the entity list from Google.
-     * @param $configObject
-     * @param $serviceObject
+     * @param Config $config
+     * @param $adwordsService
      * @return mixed
      */
-    public function downloadFromGoogle($configObject, $serviceObject);
+    public function downloadFromGoogle(Config $config, $adwordsService);
 
     /**
      * Set the config object.
