@@ -114,7 +114,7 @@ class Campaign extends Entity implements EntityInterface {
 
         // If the campaigns are not already downloaded, download them.
         if (!$this->campaigns) {
-            $this->campaign = $this->downloadFromGoogle($this->config, $this->campaignService);
+            $this->campaigns = $this->downloadFromGoogle($this->config, $this->campaignService);
         }
 
         return $this->campaigns;
