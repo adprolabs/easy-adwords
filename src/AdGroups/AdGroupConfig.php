@@ -50,8 +50,6 @@ class AdGroupConfig extends Config {
 
         if (isset($config['campaignId'])) {
             $this->campaignId = $config['campaignId'];
-        } else {
-            throw new Exception("Campaign Id must be set in order to create an ad group object.");
         }
 
         if (isset($config['adGroupName'])) {
