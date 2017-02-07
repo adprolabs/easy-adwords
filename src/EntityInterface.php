@@ -31,9 +31,11 @@ interface EntityInterface {
 
     /**
      * Download the entity list from Google.
+     * @param $configObject
+     * @param $serviceObject
      * @return mixed
      */
-    public function downloadFromGoogle();
+    public function downloadFromGoogle($configObject, $serviceObject);
 
     /**
      * Set the config object.
