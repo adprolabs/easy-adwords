@@ -21,28 +21,11 @@ For example, an `Account Performance Report` can easily be downloaded and format
     // Access the report property of the object.    
     $report->getReport();
 ```
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Config](#config)
-- [Reporting](#reporting)
-- [Entities](#entities)
-  * [Campaign](#campaign)
-  * [AdGroup](#adgroup)
-  * [Keyword](#keyword)
-    + [`Keyword`](#keyword)
-    + [`KeywordBatch`](#keywordbatch)
-- [Naming](#naming)
-
-    
 ----------------
-  
 ## Installation
 `composer require adprolabs/easy-adwords`
-
+  
 ----------------
-
 ## Config
 Basically, EasyAdWords aims to create an easy-to-use interface between the developer and the *AdWords PHP Client library*. In order to keep this process simple, EasyAdWords uses configuration objects across different entities and operations. All of these config objects are specialized for the service they are used with; however, they all extend the base `Config` class. The `Config` class contains the following fields, as they are required for every service used with EasyAdWords:
   
@@ -126,14 +109,64 @@ EasyAdWords offers basic entity operations for campaigns, ad groups and keywords
 - `get`     => Gets the instances of the entity that fits specified criteria.
 - `remove`  => Removes the instance of the entity from Google AdWords.
  
-Basically, all of these entity objects operate with special config objects, just like the reporting objects. Therefore, an appropriate config object for the entity must be created, and then, the entity object can be created by using this config object.
+**There is also an account entity, which only contains the `get` operation for now.**
+
+Basically, all of these entity objects operate with special config objects, just like the reporting objects. Therefore, an appropriate config object for the entity must be created, and then, the entity object can be constructed by using this config object.
  
 All the entity objects are extending the base class `Entity` and implementing the `EntityInterface`. Therefore, after every operation, result of the operation is accessible as a property of the entity object, called `operationResult`, which can be accessed by using the method `getOperationResult()`.
   
-Available entities are **Campaign**, **Ad Group** and **Keyword**  for now. All the entities have their corresponding config objects, such as `CampaignConfig`.
+Available entities are **Account**, **Campaign**, **Ad Group** and **Keyword** for now. All the entities have their corresponding config objects, such as `CampaignConfig`.
   
-The usage is same across the entity methods `create`, `get` and `remove`. As the nature of the `get` operation, the results can be filtered by specifying the `predicates` parameter. If there are no predicates set, all the instances of the entity will be listed.
-   
+The usage is same across the entity methods `create`, `get` and `remove`. As the nature of the `get` operation, the results can be filtered by specifying the `predicates` parameter, or can be ordered by `ordering` parameter. If there are no predicates set, all the instances of the entity will be listed. All the `get` operations will return an array of entity objects from Google AdWords PHP library, which can be used according to the Google AdWords API documentation. An example result is as follows for a `get` operation on `Account` entity:
+
+```
+    $accountList = $account->get(); 
+    print_r($accountList);
+
+    /* The result is as follows.
+    Array
+    (
+        [0] => Google\AdsApi\AdWords\v201609\mcm\ManagedCustomer Object
+            (
+                [name:protected] => account_name
+                [customerId:protected] => customer_id_of_account
+                [canManageClients:protected] => 
+                [currencyCode:protected] => currency_code_of_account
+                [dateTimeZone:protected] => date_time_zone_of_account
+                [testAccount:protected] => 
+                [accountLabels:protected] => 
+                [excludeHiddenAccounts:protected] => 
+            )
+    )
+    */
+
+    // The fields can be accessed by appropriate getters.
+    $accountList[0]->getName(); // account_name
+    $accountList[0]->getCustomerId(); // customer_id_of_account
+
+```
+### Account
+Account entity is the simplest entity in the package. It only contains a `get` method for the objects. The entity operates on an `AccountConfig` object, and this object must contain the `fields` parameter along with the required fields above, that determining the fields that will be returned from AdWords as the result.
+  
+An example usage is as follows:
+
+```php
+        $fields = array('CustomerId', 'Name', 'CanManageClients');
+
+        // Create the account configuration object.
+        $accountConfig = new AccountConfig([
+            "adwordsConfigPath" => 'my_adwords_config_file_path',
+            "clientCustomerId"  => 'my_client_customer_id',
+            "refreshToken"      => 'my_oauth_refresh_token',
+            "fields"            => $fields
+        ]);
+
+        // Create the campaign object with the config object.
+        $account = new Account($accountConfig);
+        
+        // Get the account list from  Google AdWords.
+        $account->get();
+```
 ### Campaign
 Like all the entities, the *Campaign* entity operates on a config object of the class `CampaignConfig`. The `CampaignConfig` class contains the following fields, in addition to the fields in the base `Config` class:
 
@@ -153,20 +186,46 @@ Like all the entities, the *Campaign* entity operates on a config object of the 
 'endDate'                        => End date of the campaign.
 'adServingOptimizationStatus'    => Ad serving optimization status of the campaign.
 'servingStatus'                  => Serving status of the campaign. Default is 'SERVING'.
+'useDefaults'                    => Boolean value, allows to use defaults if true.
 ```
   
-Not all these parameters are required for all of the campaign operations, some are needed for `create` operation, while some others are required fore `remove` operation. However, if you do not provide some important properties, especially when creating a campaign, the defaults will be used, which may or may not be a problem for you. *Keep in mind that, when creating a campaign, EasyAdWords sets the campaign status to 'PAUSED' in order to not to spend money on a misconfigured campaign, if otherwise is not stated.* 
+Not all these parameters are required for all of the campaign operations, some are needed for `create` operation, while some others are required for `remove` operation. However, if you do not provide some important properties, especially when creating a campaign, you will be facing with some errors. If you don't want to give every option for a campaign and use the defaults, just set `useDefaults` to `true`, and it will use the defaults. *Keep in mind that, when creating a campaign, EasyAdWords sets the campaign status to 'PAUSED' in order to not to spend money on a misconfigured campaign on default, if otherwise is not stated. Also, you still need to provide a campaign name even with the defaults.* 
   
 A basic usage of the campaign entity is as follows:
 ```php
+    use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
+    use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
+    use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
+    use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
+    use Google\AdsApi\AdWords\v201609\cm\ServingStatus;
+  
     // Create the campaign configuration object.
     $config = new CampaignConfig([
-        "adwordsConfigPath" => 'my_adwords_config_file_path',
-        "clientCustomerId"  => 'my_client_customer_id',
-        "refreshToken"      => 'my_oauth_refresh_token',
-        "startDate"         => '2017-06-22',
-        "campaignName"      => "EasyAdWords_TestCampaign_".uniqid(),
-        "budget"            => 100
+        "adwordsConfigPath"     => 'my_adwords_config_file_path',
+        "clientCustomerId"      => 'my_client_customer_id',
+        "refreshToken"          => 'my_oauth_refresh_token',
+        "startDate"             => '2017-06-22',
+        "campaignName"          => "EasyAdWords_TestCampaign_".uniqid(),
+        "budget"                => 100,
+        "advertisingChannelType" => AdvertisingChannelType::SEARCH,
+        "status"                => CampaignStatus::PAUSED,
+        "biddingStrategyType"   => BiddingStrategyType::MANUAL_CPC,
+        "budgetDeliveryMethod"  => BudgetBudgetDeliveryMethod::STANDARD,
+        "servingStatus"         => ServingStatus::SERVING,
+        "targetGoogleSearch"    => true,
+        "targetSearchNetwork"   => true,
+        "targetContentNetwork"  => true,
+        "startDate"             => date('Ymd'),
+    ]);
+
+    // Create a new campaign configuration with 'useDefaults' option.
+    $config = new CampaignConfig([
+        "adwordsConfigPath"     => 'my_adwords_config_file_path',
+        "clientCustomerId"      => 'my_client_customer_id',
+        "refreshToken"          => 'my_oauth_refresh_token',
+        "startDate"             => '2017-06-22',
+        "campaignName"          => "EasyAdWords_TestCampaign_".uniqid(),
+        "useDefaults"           => true
     ]);
    
     // Create the campaign object with the config object.
@@ -249,13 +308,13 @@ The usage of the class is almost the same with the other entities:
     ]);
    
     // Create the keyword object with the config object.
-    $adGroup = new Keyword($config);
+    $keyword = new Keyword($config);
     
     // Create the keyword on Google AdWords.
-    $adGroup->create();
+    $keyword->create();
   
     // Get the result of the keyword creation.
-    $adGroup->getOperationResult();
+    $keyword->getOperationResult();
 
 ```
   
@@ -317,7 +376,7 @@ Note that `repositories` is in the same level with `require` key, not nested ins
   
 After successfully updating the project with self-explanatory commit messages and adding comments to the code in PHPDoc style with proper explanations, you can submit a pull request with an explanation of why the update was required and what was your solution for this problem.
   
-Also, you can contribute to EasyAdWords by creating an issue with a well-defined and reproducable problem or giving feedback about the package and its design. Any form of participation is very welcomed.  
+Also, you can contribute to EasyAdWords by creating an issue with a well-defined and reproducable problem or giving feedback about the package and its design. **Any form of participation is very welcomed.**  
   
 ## License
 EasyAdWords is released under the MIT Licence.

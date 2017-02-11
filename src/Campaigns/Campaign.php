@@ -71,9 +71,8 @@ class Campaign extends Entity implements EntityInterface {
      */
     public function create() {
 
-        if (!$this->config->getCampaignName()) {
-            throw new Exception("Campaign name must be set in the config object in order to create campaign.");
-        }
+        // Check if the given configuration is correct to create a campaign.
+        $this->checkCreateConfig();
 
         // Create a campaign with given settings.
         $this->campaignObject->setName($this->config->getCampaignName());
@@ -142,6 +141,42 @@ class Campaign extends Entity implements EntityInterface {
         // Remove the campaign on the server.
         $result = $this->campaignService->mutate([$operation]);
         $this->operationResult = $result->getValue()[0];
+    }
+
+    private function checkCreateConfig() {
+        if (!$this->config->getCampaignName()) {
+            throw new Exception("Campaign name must be set in the config object in order to create campaign.");
+        }
+        if($this->config->getAdvertisingChannelType()) {
+            throw new Exception('Advertising channel type must be set in order to create a campaign.');
+        }
+        if($this->config->getStatus()) {
+            throw new Exception('Campaign status must be set in order to create a campaign.');
+        }
+        if($this->config->getBudget()) {
+            throw new Exception('Budget must be set in order to create a campaign.');
+        }
+        if($this->config->getBiddingStrategyType()) {
+            throw new Exception('Bidding strategy must be set in order to create a campaign.');
+        }
+        if($this->config->getBudgetDeliveryMethod()) {
+            throw new Exception('Budget delivery method must be set in order to create a campaign.');
+        }
+        if($this->config->getTargetGoogleSearch()) {
+            throw new Exception('Target Google Search must be set as boolean in order to create a campaign.');
+        }
+        if($this->config->getTargetSearchNetwork()) {
+            throw new Exception('Target Search Network must be set as boolean in order to create a campaign.');
+        }
+        if($this->config->getTargetContentNetwork()) {
+            throw new Exception('Target Content Network must be set as boolean in order to create a campaign.');
+        }
+        if($this->config->getStartDate()) {
+            throw new Exception('Start Date must be set in order to create a campaign.');
+        }
+        if($this->config->getServingStatus()) {
+            throw new Exception('Serving status must be set in order to create a campaign.');
+        }
     }
 
     /**

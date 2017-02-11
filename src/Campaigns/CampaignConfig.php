@@ -102,22 +102,43 @@ class CampaignConfig extends Config {
     public function __construct(array $config) {
         parent::__construct($config);
 
-        // Predefined defaults.
+        // Set the parameters to null.
         $this->campaignName = NULL;
-        $this->advertisingChannelType = AdvertisingChannelType::SEARCH;
-        $this->status = CampaignStatus::PAUSED;
-        $this->budget = 50;
-        $this->budgetName = "EasyAdWords Budget #" . uniqid();
-        $this->biddingStrategyType = BiddingStrategyType::MANUAL_CPC;
-        $this->budgetDeliveryMethod = BudgetBudgetDeliveryMethod::STANDARD;
-        $this->targetGoogleSearch = true;
-        $this->targetSearchNetwork = true;
-        $this->targetContentNetwork = true;
-        $this->startDate = date('Ymd');
+        $this->advertisingChannelType = NULL;
+        $this->status = NULL;
+        $this->budget = NULL;
+        $this->budgetName = NULL;
+        $this->biddingStrategyType = NULL;
+        $this->budgetDeliveryMethod = NULL;
+        $this->targetGoogleSearch = NULL;
+        $this->targetSearchNetwork = NULL;
+        $this->targetContentNetwork = NULL;
+        $this->startDate = NULL;
         $this->endDate = NULL;
         $this->adServingOptimizationStatus = NULL;
-        $this->servingStatus = ServingStatus::SERVING;
+        $this->servingStatus = NULL;
         $this->campaignId = NULL;
+
+        // If the 'useDefaults' option is given, set the defaults.
+        if(isset($config['useDefaults']) && $config['useDefaults'] === true) {
+
+            // Predefined defaults.
+            $this->campaignName = NULL;
+            $this->advertisingChannelType = AdvertisingChannelType::SEARCH;
+            $this->status = CampaignStatus::PAUSED;
+            $this->budget = 50;
+            $this->budgetName = "EasyAdWords Budget #" . uniqid();
+            $this->biddingStrategyType = BiddingStrategyType::MANUAL_CPC;
+            $this->budgetDeliveryMethod = BudgetBudgetDeliveryMethod::STANDARD;
+            $this->targetGoogleSearch = true;
+            $this->targetSearchNetwork = true;
+            $this->targetContentNetwork = true;
+            $this->startDate = date('Ymd');
+            $this->endDate = NULL;
+            $this->adServingOptimizationStatus = NULL;
+            $this->servingStatus = ServingStatus::SERVING;
+            $this->campaignId = NULL;
+        }
 
         if (isset($config['campaignName'])) {
             $this->campaignName = $config['campaignName'];

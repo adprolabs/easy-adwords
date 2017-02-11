@@ -70,7 +70,7 @@ class Entity extends Base {
         }
 
         $result = $adwordsService->get($selector);
-        return $result;
+        return $result->getEntries();
     }
 
 
