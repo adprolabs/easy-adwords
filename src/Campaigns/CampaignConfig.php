@@ -134,10 +134,7 @@ class CampaignConfig extends Config {
             $this->targetSearchNetwork = true;
             $this->targetContentNetwork = true;
             $this->startDate = date('Ymd');
-            $this->endDate = NULL;
-            $this->adServingOptimizationStatus = NULL;
             $this->servingStatus = ServingStatus::SERVING;
-            $this->campaignId = NULL;
         }
 
         if (isset($config['campaignName'])) {
