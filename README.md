@@ -112,7 +112,9 @@ public function googleCallback(){
 This is it, now you have your access token and refresh token in the `$credentials` parameter and you downloaded the customers of the account, now you can do whatever you want. Note that, the `$this->authObject->buildOAuthObject($this->config);` line returns an instance of `Google\Auth\OAuth2` object, therefore you can use any methods of it with the object and also get help from the [AdWords API documentation](https://developers.google.com/adwords/api/docs/guides/start).
 
 ## Config
-Basically, EasyAdWords aims to create an easy-to-use interface between the developer and the *AdWords PHP Client library*. In order to keep this process simple, EasyAdWords uses configuration objects across different entities and operations. All of these config objects are specialized for the service they are used with; however, they all extend the base `Config` class. The `Config` class contains the following fields, as they are required for every service used with EasyAdWords:
+Basically, EasyAdWords aims to create an easy-to-use interface between the developer and the *AdWords PHP Client library*. In order to keep this process simple, EasyAdWords uses configuration objects across different entities and operations. All of these config objects are specialized for the service they are used with; however, they all extend the base `Config` class. 
+### Required Fields
+The `Config` class contains the following fields as required, since they are required for every service used with EasyAdWords:
   
 - `adwordsConfigPath` => The path to the AdWords config file. If this is not given, the package looks for `adsapi_php.ini` file in the project root.
 - `clientCustomerId`  => ID of the customer to operate on. **Required.** 
@@ -120,7 +122,12 @@ Basically, EasyAdWords aims to create an easy-to-use interface between the devel
 - `fields`            => Fields to get. **Required for get operations.**     
   
 Keep in mind that these fields are **required** for all of the config objects, except that the `adwordsConfigPath` key, which seems to be not necessary, however if not given, the AdWords PHP Client library will look for the `adsapi_php.ini` file in the project root, therefore it is **required to have this file**. 
-   
+### Optional Fields
+The following are optional values that can be used with any config object for entity operations. Note that reporting does allow pagination to be used, instead you need to filter your reports with appropriate predicates if the response was too large.
+
+- `paginated`   => Boolean value to determine if the operation will be performed page by page, useful if you get `SizeLimitError.RESPONSE_SIZE_LIMIT_EXCEEDED` error with a `get` operation on an entity.
+- `pageSize`    => Page size for the `get` operations, default is 10000, the maximum number allowed.
+
 ## Reporting
 EasyAdWords contains some basic classes that allows to get reports from AdWords easily. The following are available reporting classes for now:
 - `AccountPerformanceReport`

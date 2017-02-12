@@ -98,8 +98,8 @@ class Config extends Base {
             $this->predicates = $config['ordering'];
         }
 
-        if (isset($config['isPaginated']) AND $config['isPaginated'] == true) {
-            $this->paginated = $config['isPaginated'];
+        if (isset($config['paginated']) AND $config['paginated'] == true) {
+            $this->paginated = $config['paginated'];
         }
 
         if (isset($config['pageSize'])) {
