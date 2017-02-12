@@ -1,5 +1,5 @@
-
-![EasyAdWordsLogo](http://i66.tinypic.com/se4lch.png)
+![EasyAdWordsLogo](https://i.imgsafe.org/0e5e9af5e5.png)
+ 
 EasyAdWords is an easy-to-use and customizable library that simplifies the basic usage cases of the AdWords API with PHP Client library. It basically allows **simpler reporting process** with *downloading* and *parsing* the report, and also allows entity operations such as **getting**, **creating** and **removing** campaigns, ad groups and keywords.
   
 For example, an `Account Performance Report` can easily be downloaded and formatted like the following simple snippet:
