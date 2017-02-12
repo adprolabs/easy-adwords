@@ -1,4 +1,5 @@
-# EasyAdWords
+
+![EasyAdWordsLogo](http://i66.tinypic.com/se4lch.png)
 EasyAdWords is an easy-to-use and customizable library that simplifies the basic usage cases of the AdWords API with PHP Client library. It basically allows **simpler reporting process** with *downloading* and *parsing* the report, and also allows entity operations such as **getting**, **creating** and **removing** campaigns, ad groups and keywords.
   
 For example, an `Account Performance Report` can easily be downloaded and formatted like the following simple snippet:
@@ -21,6 +22,24 @@ $report->download()->format();
 // Access the report property of the object.    
 $report->getReport();
 ```
+
+## Table of Contents
+- [Installation](#installation)
+- [Auth](#auth)
+- [Config](#config)
+  * [Required Fields](#required-fields)
+  * [Optional Fields](#optional-fields)
+- [Reporting](#reporting)
+- [Entities](#entities)
+  * [Account](#account)
+  * [Campaign](#campaign)
+  * [AdGroup](#adgroup)
+  * [Keyword](#keyword)
+    + [`Keyword`](#keyword)
+    + [`KeywordBatch`](#keywordbatch)
+- [Contribution](#contribution)
+- [License](#license)
+
 
 ## Installation
 
