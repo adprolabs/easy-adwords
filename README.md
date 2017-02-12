@@ -507,4 +507,4 @@ After successfully updating the project with self-explanatory commit messages an
 Also, you can contribute to EasyAdWords by creating an issue with a well-defined and reproducable problem or giving feedback about the package and its design. **Any form of participation is very welcomed.**  
   
 ## License
-EasyAdWords is released under the MIT Licence.
+EasyAdWords is released under the MIT Licence. For further information, see the [LICENSE.md](LICENSE.md).
