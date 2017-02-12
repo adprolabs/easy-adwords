@@ -234,7 +234,7 @@ Available entities are **Account**, **Campaign**, **Ad Group** and **Keyword** f
   
 The usage is same across the entity methods `create`, `get` and `remove`. As the nature of the `get` operation, the results can be filtered by specifying the `predicates` parameter, or can be ordered by `ordering` parameter. If there are no predicates set, all the instances of the entity will be listed. All the `get` operations will return an array of entity objects from Google AdWords PHP library, which can be used according to the Google AdWords API documentation. An example result is as follows for a `get` operation on `Account` entity:
 
-```
+```php
 $accountList = $account->get(); 
 print_r($accountList);
 
