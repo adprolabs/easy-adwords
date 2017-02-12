@@ -15,6 +15,8 @@ use Google\AdsApi\AdWords\v201609\cm\Selector;
  */
 class Entity extends Base {
 
+    const PAGE_LIMIT = 10000;
+
     /**
      * @var array                   Result of the completed operation.
      */
@@ -69,8 +71,24 @@ class Entity extends Base {
             $selector->setPredicates($config->getPredicates());
         }
 
-        $result = $adwordsService->get($selector);
-        return $result->getEntries();
+        // Set the pagination for the request.
+        $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+        $result = array();
+
+        do {
+          $page = $adWordsServices->get($selector);
+
+          // Get the page entries and add them to the result array.
+          if ($page->getEntries() !== null) {
+            $totalNumEntries = $page->getTotalNumEntries();
+            $result = array_merge($result, $page->getEntries());
+          }
+
+          $selector->getPaging()->setStartIndex(
+              $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+        } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+        return $result;
     }
 
 
