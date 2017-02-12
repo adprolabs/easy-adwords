@@ -5,6 +5,7 @@ namespace EasyAdWords;
 
 use EasyAdWords\Auth\AdWordsAuth;
 use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 
 /**
@@ -53,7 +54,8 @@ class Entity extends Base {
      * Useful if the list needs to be re-downloaded.
      * @param Config $config
      * @param $adwordsService
-     * @return
+     * @param $isPaginated
+     * @return array
      */
     public function downloadFromGoogle(Config $config, $adwordsService) {
 
@@ -71,22 +73,33 @@ class Entity extends Base {
             $selector->setPredicates($config->getPredicates());
         }
 
-        // Set the pagination for the request.
-        $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
         $result = array();
 
-        do {
-          $page = $adWordsServices->get($selector);
+        // If pagination is requested, perform it. Otherwise, perform a singular request.
+        if ($config->isPaginated() === true) {
 
-          // Get the page entries and add them to the result array.
-          if ($page->getEntries() !== null) {
-            $totalNumEntries = $page->getTotalNumEntries();
-            $result = array_merge($result, $page->getEntries());
-          }
+            // Set the pagination for the request.
+            $selector->setPaging(new Paging(0, $config->getPageSize()));
+            $totalNumEntries = 0;
 
-          $selector->getPaging()->setStartIndex(
-              $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-        } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+            do {
+
+                // Get a page.
+                $page = $adwordsService->get($selector);
+
+                // Get the page entries and add them to the result array.
+                if ($page->getEntries() !== null) {
+                    $totalNumEntries = $page->getTotalNumEntries();
+                    $result = array_merge($result, $page->getEntries());
+                }
+
+                $selector->getPaging()->setStartIndex($selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+            } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+        } else {
+
+            // Get directly.
+            $result = $adwordsService->get($selector)->getEntries();
+        }
 
         return $result;
     }

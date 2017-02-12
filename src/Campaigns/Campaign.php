@@ -108,6 +108,8 @@ class Campaign extends Entity implements EntityInterface {
     /**
      * List all the campaigns with the given fields and predicates.
      * Works as an alias of "getCampaigns" if the list is already downloaded before.
+     * @param bool $isPaginated
+     * @return array|mixed|null
      */
     public function get() {
 

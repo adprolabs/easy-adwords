@@ -9,5 +9,5 @@ namespace EasyAdWords;
  * @package EasyAdWords
  */
 class Base {
-
+    const PAGE_SIZE = 10000;
 }

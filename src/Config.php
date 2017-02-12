@@ -32,10 +32,21 @@ class Config extends Base {
      * @var array                   The predicates array, must be an array of "Predicate" objects.
      */
     protected $predicates;
+
     /**
      * @var array                   The ordering array, must be an array of "OrderBy" objects.
      */
     protected $ordering;
+
+    /**
+     * @var boolean                 The boolean variable to determine if the request will be paginated.
+     */
+    protected $paginated;
+
+    /**
+     * @var integer                 The page size for the paginated request.
+     */
+    protected $pageSize;
 
     /**
      * Config constructor.
@@ -48,6 +59,8 @@ class Config extends Base {
         $this->clientCustomerId = NULL;
         $this->adwordsConfigPath = NULL;
         $this->ordering = NULL;
+        $this->paginated = false;
+        $this->pageSize = self::PAGE_SIZE;
 
         if (isset($config['refreshToken'])) {
             $this->refreshToken = $config['refreshToken'];
@@ -83,6 +96,14 @@ class Config extends Base {
             }
 
             $this->predicates = $config['ordering'];
+        }
+
+        if (isset($config['isPaginated']) AND $config['isPaginated'] == true) {
+            $this->paginated = $config['isPaginated'];
+        }
+
+        if (isset($config['pageSize'])) {
+            $this->pageSize = $config['pageSize'];
         }
     }
 
@@ -202,4 +223,37 @@ class Config extends Base {
         $this->ordering = $ordering;
         return $this;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isPaginated() {
+        return $this->paginated;
+    }
+
+    /**
+     * @param boolean $paginated
+     * @return Config
+     */
+    public function setPaginated($paginated) {
+        $this->paginated = $paginated;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageSize() {
+        return $this->pageSize;
+    }
+
+    /**
+     * @param int $pageSize
+     * @return Config
+     */
+    public function setPageSize($pageSize) {
+        $this->pageSize = $pageSize;
+        return $this;
+    }
+
 }
