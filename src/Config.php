@@ -58,6 +58,8 @@ class Config extends Base {
         $this->refreshToken = NULL;
         $this->clientCustomerId = NULL;
         $this->adwordsConfigPath = NULL;
+        $this->fields = NULL;
+        $this->predicates = NULL;
         $this->ordering = NULL;
         $this->paginated = false;
         $this->pageSize = self::PAGE_SIZE;

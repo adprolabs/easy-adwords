@@ -3,6 +3,7 @@
 namespace EasyAdWords\Reports;
 
 use EasyAdWords\Config;
+use Exception;
 
 /**
  * Report config class to use with report objects.
@@ -33,7 +34,9 @@ class ReportConfig extends Config {
 
         parent::__construct($config);
 
-        $this->fields = array();
+        if($this->fields === null) {
+            throw new Exception("Fields must be set for getting a report.");
+        }
 
         if (isset($config['startDate'])) {
             $this->startDate = $config['startDate'];
