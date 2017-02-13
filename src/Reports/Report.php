@@ -161,4 +161,12 @@ class Report extends Base {
         return $this;
     }
 
+    /**
+     * An alias to the getReport method.
+     * @return array|string
+     */
+    public function get(){
+        return $this->report;
+    }
+
 }
