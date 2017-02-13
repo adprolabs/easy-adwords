@@ -29,6 +29,7 @@ class ReportConfig extends Config {
     /**
      * ReportConfig constructor.
      * @param array $config
+     * @throws Exception
      */
     public function __construct(array $config = array()) {
 
