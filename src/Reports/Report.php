@@ -24,6 +24,11 @@ class Report extends Base {
     protected $config;
 
     /**
+     * @var
+     */
+    protected $reportType;
+
+    /**
      * @var string|array            The downloaded and formatted report result.
      */
     protected $report;
@@ -42,48 +47,21 @@ class Report extends Base {
      * Report constructor.
      * @param ReportConfig $config
      */
-    public function __construct(ReportConfig $config) {
+    public function __construct(ReportConfig $config, $reportType) {
         $this->config = $config;
+        $this->reportType;
 
         return $this;
     }
 
     /**
      * Downloads the raw report as string.
-     * @param $reportType
      * @return $this
      */
-    protected function downloadRawReport($reportType) {
+    protected function downloadRawReport() {
 
-        // Create the auth object.
-        $authObject = new AdWordsAuth($this->config->getRefreshToken(), $this->config->getAdwordsConfigPath());
-
-        // Build the session with the auth object.
-        $authObject->buildSession($this->config->getClientCustomerId());
-
-        // Create report date range object.
-        $reportDates = new DateRange($this->config->getStartDate(), $this->config->getEndDate());
-
-        // Create selector.
-        $selector = new Selector();
-        $selector->setFields($this->config->getFields());
-        $selector->setDateRange($reportDates);
-
-        if (!empty($this->config->getPredicates())) {
-            $selector->setPredicates($this->config->getPredicates());
-        }
-
-        // Create report definition.
-        $reportDefinition = new ReportDefinition();
-        $reportDefinition->setSelector($selector);
-        $reportDefinition->setReportName('AdProReport');
-        $reportDefinition->setDateRangeType(ReportDefinitionDateRangeType::CUSTOM_DATE);
-        $reportDefinition->setReportType($reportType);
-        $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
-
-        // Download report.
-        $reportDownloader = new ReportDownloader($authObject->getSession());
-        $reportDownloadResult = $reportDownloader->downloadReport($reportDefinition);
+        // Get the report object from AdWords.
+        $reportDownloadResult = $this->downloadReportFromAdWords($this->reportType);
 
         // Save the string version.
         $this->report = $reportDownloadResult->getAsString();
@@ -127,21 +105,52 @@ class Report extends Base {
     }
 
     /**
-     * Creates required directories if they are not set.
-     * Taken from http://php.net/manual/en/function.file-put-contents.php#84180
+     * Download report from AdWords and write it to the given file.
+     * However, it does not store the report, just writes the contents to the file.
      * @param $filePath
-     * @param $contents
      */
-    private function file_force_contents($filePath, $contents) {
-        $directories = explode('/', $filePath);
-        $fileName = array_pop($directories);
-        $filePath = '';
-        foreach ($directories as $directory) {
-            if (!is_dir($filePath .= "/$directory")) {
-                mkdir($filePath);
-            }
+    public function downloadToFile($filePath) {
+        // Get the report object from AdWords.
+        $reportDownloadResult = $this->downloadReportFromAdWords($this->reportType);
+        $reportDownloadResult->saveToFile($filePath);
+    }
+
+    /**
+     * Downloads the result from Google AdWords.
+     * @param $reportType
+     * @return \Google\AdsApi\AdWords\Reporting\ReportDownloadResult
+     */
+    private function downloadReportFromAdWords($reportType) {
+        // Create the auth object.
+        $authObject = new AdWordsAuth($this->config->getRefreshToken(), $this->config->getAdwordsConfigPath());
+
+        // Build the session with the auth object.
+        $authObject->buildSession($this->config->getClientCustomerId());
+
+        // Create report date range object.
+        $reportDates = new DateRange($this->config->getStartDate(), $this->config->getEndDate());
+
+        // Create selector.
+        $selector = new Selector();
+        $selector->setFields($this->config->getFields());
+        $selector->setDateRange($reportDates);
+
+        if (!empty($this->config->getPredicates())) {
+            $selector->setPredicates($this->config->getPredicates());
         }
-        file_put_contents("$filePath/$fileName", $contents);
+
+        // Create report definition.
+        $reportDefinition = new ReportDefinition();
+        $reportDefinition->setSelector($selector);
+        $reportDefinition->setReportName('AdProReport');
+        $reportDefinition->setDateRangeType(ReportDefinitionDateRangeType::CUSTOM_DATE);
+        $reportDefinition->setReportType($reportType);
+        $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
+
+        // Download report.
+        $reportDownloader = new ReportDownloader($authObject->getSession());
+
+        return $reportDownloader->downloadReport($reportDefinition);
     }
 
     /**
@@ -219,11 +228,46 @@ class Report extends Base {
     }
 
     /**
+     * @return mixed
+     */
+    public function getReportType() {
+        return $this->reportType;
+    }
+
+    /**
+     * @param mixed $reportType
+     * @return Report
+     */
+    public function setReportType($reportType) {
+        $this->reportType = $reportType;
+
+        return $this;
+    }
+
+    /**
      * An alias to the getReport method.
      * @return array|string
      */
     public function get() {
         return $this->report;
+    }
+
+    /**
+     * Creates required directories if they are not set.
+     * Taken from http://php.net/manual/en/function.file-put-contents.php#84180
+     * @param $filePath
+     * @param $contents
+     */
+    private function file_force_contents($filePath, $contents) {
+        $directories = explode('/', $filePath);
+        $fileName = array_pop($directories);
+        $filePath = '';
+        foreach ($directories as $directory) {
+            if (!is_dir($filePath .= "/$directory")) {
+                mkdir($filePath);
+            }
+        }
+        file_put_contents("$filePath/$fileName", $contents);
     }
 
 }

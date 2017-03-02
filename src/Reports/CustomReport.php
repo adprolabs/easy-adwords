@@ -12,18 +12,19 @@ class CustomReport extends Report implements ReportInterface {
     /**
      * FinalUrlReport constructor.
      * @param ReportConfig $config
+     * @param null $reportType
      */
-    public function __construct(ReportConfig $config) {
-        parent::__construct($config);
+    public function __construct(ReportConfig $config, $reportType = null) {
+        parent::__construct($config, $reportType);
     }
 
     /**
      * Download the raw CSV report from AdWords and store in the object.
-     * @param null $reportType
      * @return $this
      */
-    public function download($reportType = NULL) {
-        $this->downloadRawReport($reportType);
+    public function download() {
+        $this->downloadRawReport();
+
         return $this;
     }
 
@@ -33,6 +34,7 @@ class CustomReport extends Report implements ReportInterface {
      */
     public function format() {
         $this->formatRawReport();
+
         return $this;
     }
 }

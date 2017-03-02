@@ -1,6 +1,6 @@
 ![EasyAdWordsLogo](https://i.imgsafe.org/0e5e9af5e5.png)
  
-EasyAdWords is an easy-to-use and customizable library that simplifies the basic usage cases of the AdWords API with PHP Client library. It basically allows **simpler reporting process** with *downloading* and *parsing* the report, and also allows entity operations such as **getting**, **creating** and **removing** campaigns, ad groups and keywords.
+EasyAdWords is an easy-to-use and customizable library that simplifies the basic usage cases of the AdWords API with PHP Client library v25.3 currently. It basically allows **simpler reporting process** with *downloading* and *parsing* the report, and also allows entity operations such as **getting**, **creating** and **removing** campaigns, ad groups and keywords.
   
 For example, an `Account Performance Report` can easily be downloaded and formatted like the following simple snippet:
 ```php
@@ -203,11 +203,13 @@ This process is same for all of the reports. In addition to the available report
 ```php
 use EasyAdWords\Reports\CustomReport;
 
+$reportType =  ReportDefinitionReportType::URL_PERFORMANCE_REPORT;
+
 // The custom report object is initialized.
-$report = new CustomReport($config);     
+$report = new CustomReport($config, $reportType);     
 
 // Download the URL Performance Report and store it as a CSV string.   
-$report->download(ReportDefinitionReportType::URL_PERFORMANCE_REPORT);    
+$report->download();    
 
 // Format the report CSV into a flat array.    
 $report->format();     
@@ -217,6 +219,12 @@ $report->getReport();
 ```
 
 Note that, after formatting the report, the CSV version of the report is not available.
+
+Available methods for reports are as follows:
+- `download()`: Downloads the report and stores it in the `report` property of the object.
+- `format()`: Formats the CSV report into a flat array.
+- `saveToFile($filePath)`: Saves the `report` property of the object to the given file.
+- `downloadToFile($filePath)`: Downloads and stores the report in the given file path. Note that this method does not keep the report in the report object after downloading and writing to the file.
     
 ## Entities
 EasyAdWords offers basic entity operations for campaigns, ad groups and keywords. Basically, all of these three entities are able to perform 3 basic operations:
@@ -497,7 +505,10 @@ With the batch config class, you can create keywords in batches, thus decrease t
 "repositories": [{
     "type": "vcs",
     "url": "path/to/easy-adwords"
-}]
+}],
+"require": {
+    "adprolabs/easy-adwords": "dev-master"
+},
 ```
   
 Note that `repositories` is in the same level with `require` key, not nested inside something else. The `repositories` option works with the `vcs` value in `type`. Therefore, in order to test the package in another project with including it as a package like above, you need to commit your changes on the package and then `composer update` on the test project in order to get the latest changes you have made.

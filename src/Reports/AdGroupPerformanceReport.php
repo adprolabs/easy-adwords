@@ -4,7 +4,6 @@ namespace EasyAdWords\Reports;
 
 use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
 
-
 /**
  * Report class that deals with Ad Group Performance Report.
  * Class AdGroupPerformanceReport
@@ -12,12 +11,14 @@ use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
  */
 class AdGroupPerformanceReport extends Report implements ReportInterface {
 
+    protected $reportType = ReportDefinitionReportType::ADGROUP_PERFORMANCE_REPORT;
+
     /**
      * AdGroupPerformanceReport constructor.
      * @param ReportConfig $config
      */
     public function __construct(ReportConfig $config) {
-        parent::__construct($config);
+        parent::__construct($config, $this->reportType);
     }
 
     /**
@@ -25,7 +26,8 @@ class AdGroupPerformanceReport extends Report implements ReportInterface {
      * @return $this
      */
     public function download() {
-        $this->downloadRawReport(ReportDefinitionReportType::ADGROUP_PERFORMANCE_REPORT);
+        $this->downloadRawReport();
+
         return $this;
     }
 
@@ -35,6 +37,7 @@ class AdGroupPerformanceReport extends Report implements ReportInterface {
      */
     public function format() {
         $this->formatRawReport();
+
         return $this;
     }
 }

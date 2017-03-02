@@ -11,12 +11,14 @@ use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
  */
 class FinalUrlReport extends Report implements ReportInterface {
 
+    protected $reportType = ReportDefinitionReportType::FINAL_URL_REPORT;
+
     /**
      * FinalUrlReport constructor.
      * @param ReportConfig $config
      */
     public function __construct(ReportConfig $config) {
-        parent::__construct($config);
+        parent::__construct($config, $this->reportType);
     }
 
     /**
@@ -24,7 +26,8 @@ class FinalUrlReport extends Report implements ReportInterface {
      * @return $this
      */
     public function download() {
-        $this->downloadRawReport(ReportDefinitionReportType::FINAL_URL_REPORT);
+        $this->downloadRawReport();
+
         return $this;
     }
 
@@ -34,6 +37,7 @@ class FinalUrlReport extends Report implements ReportInterface {
      */
     public function format() {
         $this->formatRawReport();
+
         return $this;
     }
 }

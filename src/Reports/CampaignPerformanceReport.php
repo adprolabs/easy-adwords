@@ -11,12 +11,14 @@ use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
  */
 class CampaignPerformanceReport extends Report implements ReportInterface {
 
+    protected $reportType = ReportDefinitionReportType::CAMPAIGN_PERFORMANCE_REPORT;
+
     /**
      * CampaignPerformanceReport constructor.
      * @param ReportConfig $config
      */
     public function __construct(ReportConfig $config) {
-        parent::__construct($config);
+        parent::__construct($config, $this->reportType);
     }
 
     /**
@@ -24,7 +26,8 @@ class CampaignPerformanceReport extends Report implements ReportInterface {
      * @return $this
      */
     public function download() {
-        $this->downloadRawReport(ReportDefinitionReportType::CAMPAIGN_PERFORMANCE_REPORT);
+        $this->downloadRawReport();
+
         return $this;
     }
 
@@ -34,6 +37,7 @@ class CampaignPerformanceReport extends Report implements ReportInterface {
      */
     public function format() {
         $this->formatRawReport();
+
         return $this;
     }
 }
