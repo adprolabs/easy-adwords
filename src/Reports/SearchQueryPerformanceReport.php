@@ -10,12 +10,14 @@ use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
  */
 class SearchQueryPerformanceReport extends Report implements ReportInterface {
 
+    protected $reportType = ReportDefinitionReportType::SEARCH_QUERY_PERFORMANCE_REPORT;
+
     /**
      * SearchQueryPerformanceReport constructor.
      * @param ReportConfig $config
      */
     public function __construct(ReportConfig $config) {
-        parent::__construct($config);
+        parent::__construct($config, $this->reportType);
     }
 
     /**
@@ -23,7 +25,8 @@ class SearchQueryPerformanceReport extends Report implements ReportInterface {
      * @return $this
      */
     public function download() {
-        $this->downloadRawReport(ReportDefinitionReportType::SEARCH_QUERY_PERFORMANCE_REPORT);
+        $this->downloadRawReport();
+
         return $this;
     }
 
@@ -33,6 +36,7 @@ class SearchQueryPerformanceReport extends Report implements ReportInterface {
      */
     public function format() {
         $this->formatRawReport();
+
         return $this;
     }
 }

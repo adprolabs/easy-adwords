@@ -46,10 +46,11 @@ class Report extends Base {
     /**
      * Report constructor.
      * @param ReportConfig $config
+     * @param $reportType
      */
     public function __construct(ReportConfig $config, $reportType) {
         $this->config = $config;
-        $this->reportType;
+        $this->reportType = $reportType;
 
         return $this;
     }
