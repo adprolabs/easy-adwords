@@ -34,11 +34,17 @@ class Report extends Base {
     protected $reportHeaders;
 
     /**
+     * @var string                  The path to save the report.
+     */
+    protected $filePath;
+
+    /**
      * Report constructor.
      * @param ReportConfig $config
      */
     public function __construct(ReportConfig $config) {
         $this->config = $config;
+
         return $this;
     }
 
@@ -81,6 +87,7 @@ class Report extends Base {
 
         // Save the string version.
         $this->report = $reportDownloadResult->getAsString();
+
         return $this;
     }
 
@@ -108,6 +115,36 @@ class Report extends Base {
     }
 
     /**
+     * Saves the report CSV to a given file.
+     * @param $filePath
+     * @return $this
+     */
+    public function saveToFile($filePath) {
+        $this->file_force_contents($filePath, $this->report);
+        $this->filePath = $filePath;
+
+        return $this;
+    }
+
+    /**
+     * Creates required directories if they are not set.
+     * Taken from http://php.net/manual/en/function.file-put-contents.php#84180
+     * @param $filePath
+     * @param $contents
+     */
+    private function file_force_contents($filePath, $contents) {
+        $directories = explode('/', $filePath);
+        $fileName = array_pop($directories);
+        $filePath = '';
+        foreach ($directories as $directory) {
+            if (!is_dir($filePath .= "/$directory")) {
+                mkdir($filePath);
+            }
+        }
+        file_put_contents("$filePath/$fileName", $contents);
+    }
+
+    /**
      * Get report config.
      * @return ReportConfig
      */
@@ -122,6 +159,7 @@ class Report extends Base {
      */
     public function setConfig($config) {
         $this->config = $config;
+
         return $this;
     }
 
@@ -140,6 +178,7 @@ class Report extends Base {
      */
     public function setReport($report) {
         $this->report = $report;
+
         return $this;
     }
 
@@ -158,6 +197,24 @@ class Report extends Base {
      */
     public function setReportHeaders($reportHeaders) {
         $this->reportHeaders = $reportHeaders;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFilePath() {
+        return $this->filePath;
+    }
+
+    /**
+     * @param mixed $filePath
+     * @return Report
+     */
+    public function setFilePath($filePath) {
+        $this->filePath = $filePath;
+
         return $this;
     }
 
@@ -165,7 +222,7 @@ class Report extends Base {
      * An alias to the getReport method.
      * @return array|string
      */
-    public function get(){
+    public function get() {
         return $this->report;
     }
 
