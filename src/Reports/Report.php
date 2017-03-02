@@ -111,6 +111,10 @@ class Report extends Base {
      * @param $filePath
      */
     public function downloadToFile($filePath) {
+
+        // Create the missing folders in the file path.
+        $this->createMissingFolders($filePath);
+
         // Get the report object from AdWords.
         $reportDownloadResult = $this->downloadReportFromAdWords($this->reportType);
         $reportDownloadResult->saveToFile($filePath);
@@ -260,15 +264,17 @@ class Report extends Base {
      * @param $contents
      */
     private function file_force_contents($filePath, $contents) {
-        $directories = explode('/', $filePath);
+        $this->createMissingFolders($filePath);
+        file_put_contents($filePath, $contents);
+    }
+
+    private function createMissingFolders($path) {
+        $directories = explode('/', $path);
         $fileName = array_pop($directories);
-        $filePath = '';
-        foreach ($directories as $directory) {
-            if (!is_dir($filePath .= "/$directory")) {
-                mkdir($filePath);
-            }
+        $path = implode('/', $directories);
+        if (!is_dir($path)) {
+            mkdir($path, 0, true);
         }
-        file_put_contents("$filePath/$fileName", $contents);
     }
 
 }
