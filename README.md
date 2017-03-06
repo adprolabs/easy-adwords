@@ -73,7 +73,7 @@ class MyAuth {
             'clientId' => $clientId,
             'clientSecret' => $clientSecret,
             'scope' => $scopes
-        ]
+        ];
 
         // Create an auth object.
         $this->authObject = new AdWordsAuth(NULL, 'my_adwords_config_file_path');
@@ -489,7 +489,7 @@ foreach($keywords as $keyword) {
         "status"            => UserStatus::ENABLED
     ]);
 
-    $keywordBatch.append($keywordConfig);
+    $keywordBatch->append($keywordConfig);
 }
 
 // Apply the new keywords to the Google AdWords.
