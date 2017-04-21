@@ -2,7 +2,7 @@
 
 namespace EasyAdWords\Campaigns;
 
-use EasyAdWords\Auth\AdWordsAuth;
+use EasyAdWords\AdWordsAuth\AdWordsAuth;
 use EasyAdWords\Entity;
 use EasyAdWords\EntityInterface;
 use Exception;

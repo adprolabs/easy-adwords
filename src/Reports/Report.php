@@ -2,7 +2,7 @@
 
 namespace EasyAdWords\Reports;
 
-use EasyAdWords\Auth\AdWordsAuth;
+use EasyAdWords\AdWordsAuth\AdWordsAuth;
 use EasyAdWords\Base;
 use Google\AdsApi\AdWords\Reporting\v201609\DownloadFormat;
 use Google\AdsApi\AdWords\Reporting\v201609\ReportDefinition;

@@ -51,7 +51,7 @@ Most of the package is developed with the user is logged in via Google in mind. 
 Assume that you used this part in constructor, which means this is used for both redirecting and callback parts:
 
 ```php
-use EasyAdWords\Auth\AdWordsAuth;
+use EasyAdWords\AdWordsAuth\AdWordsAuth;
 use Google\AdsApi\AdWords\v201609\mcm\CustomerService;
 
 class MyAuth {
