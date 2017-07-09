@@ -5,13 +5,13 @@ namespace EasyAdWords\AdGroups;
 use EasyAdWords\Entity;
 use EasyAdWords\EntityInterface;
 use Exception;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupOperation;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupService;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupStatus;
-use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
-use Google\AdsApi\AdWords\v201609\cm\CpcBid;
-use Google\AdsApi\AdWords\v201609\cm\Money;
-use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201705\cm\AdGroupOperation;
+use Google\AdsApi\AdWords\v201705\cm\AdGroupService;
+use Google\AdsApi\AdWords\v201705\cm\AdGroupStatus;
+use Google\AdsApi\AdWords\v201705\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201705\cm\CpcBid;
+use Google\AdsApi\AdWords\v201705\cm\Money;
+use Google\AdsApi\AdWords\v201705\cm\Operator;
 
 /**
  * Base class for basic ad group operations.
@@ -40,7 +40,7 @@ class AdGroup extends Entity implements EntityInterface {
     protected $adGroupService;
 
     /**
-     * @var \Google\AdsApi\AdWords\v201609\cm\AdGroup The ad group object that the class will operate with.
+     * @var \Google\AdsApi\AdWords\v201705\cm\AdGroup The ad group object that the class will operate with.
      */
     protected $adGroupObject;
 
@@ -55,7 +55,7 @@ class AdGroup extends Entity implements EntityInterface {
 
         // Build the ad group service.
         $this->adGroupService = $this->adWordsServices->get($this->authObject->getSession(), AdGroupService::class);
-        $this->adGroupObject = new \Google\AdsApi\AdWords\v201609\cm\AdGroup();
+        $this->adGroupObject = new \Google\AdsApi\AdWords\v201705\cm\AdGroup();
         $this->adGroups = NULL;
     }
 

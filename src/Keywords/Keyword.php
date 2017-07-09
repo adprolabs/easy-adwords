@@ -4,10 +4,10 @@ namespace EasyAdWords\Keywords;
 
 use EasyAdWords\EntityInterface;
 use Exception;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterion;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
-use Google\AdsApi\AdWords\v201609\cm\Criterion;
-use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201705\cm\AdGroupCriterion;
+use Google\AdsApi\AdWords\v201705\cm\AdGroupCriterionOperation;
+use Google\AdsApi\AdWords\v201705\cm\Criterion;
+use Google\AdsApi\AdWords\v201705\cm\Operator;
 
 
 /**

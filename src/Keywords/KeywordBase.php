@@ -5,13 +5,13 @@ namespace EasyAdWords\Keywords;
 use EasyAdWords\Config;
 use EasyAdWords\Entity;
 use Exception;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionService;
-use Google\AdsApi\AdWords\v201609\cm\BiddableAdGroupCriterion;
-use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
-use Google\AdsApi\AdWords\v201609\cm\CpcBid;
-use Google\AdsApi\AdWords\v201609\cm\Money;
-use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201705\cm\AdGroupCriterionOperation;
+use Google\AdsApi\AdWords\v201705\cm\AdGroupCriterionService;
+use Google\AdsApi\AdWords\v201705\cm\BiddableAdGroupCriterion;
+use Google\AdsApi\AdWords\v201705\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201705\cm\CpcBid;
+use Google\AdsApi\AdWords\v201705\cm\Money;
+use Google\AdsApi\AdWords\v201705\cm\Operator;
 
 /**
  * Base class for Keyword and KeywordBatch classes.
@@ -49,7 +49,7 @@ class KeywordBase extends Entity {
     public function createKeywordOperation(KeywordConfig $config) {
 
         // Create the criterion object.
-        $adGroupCriterionObject = new \Google\AdsApi\AdWords\v201609\cm\Keyword();
+        $adGroupCriterionObject = new \Google\AdsApi\AdWords\v201705\cm\Keyword();
 
         // Set the text and the match types of the criterion object.
         $adGroupCriterionObject->setText($config->getKeyword());

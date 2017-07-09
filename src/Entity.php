@@ -5,8 +5,8 @@ namespace EasyAdWords;
 
 use EasyAdWords\AdWordsAuth\AdWordsAuth;
 use Google\AdsApi\AdWords\AdWordsServices;
-use Google\AdsApi\AdWords\v201609\cm\Paging;
-use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201705\cm\Paging;
+use Google\AdsApi\AdWords\v201705\cm\Selector;
 
 /**
  * Parent of the various entity classes, such as Campaign, AdGroup and Keyword.

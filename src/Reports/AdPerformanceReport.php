@@ -2,7 +2,7 @@
 
 namespace EasyAdWords\Reports;
 
-use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
+use Google\AdsApi\AdWords\v201705\cm\ReportDefinitionReportType;
 
 /**
  * Report class that deals with Ad Performance Report.

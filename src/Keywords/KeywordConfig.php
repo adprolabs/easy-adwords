@@ -3,8 +3,8 @@
 namespace EasyAdWords\Keywords;
 
 use EasyAdWords\Config;
-use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
-use Google\AdsApi\AdWords\v201609\cm\UserStatus;
+use Google\AdsApi\AdWords\v201705\cm\KeywordMatchType;
+use Google\AdsApi\AdWords\v201705\cm\UserStatus;
 
 /**
  * Config class for Keyword class.
