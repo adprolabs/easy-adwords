@@ -3,7 +3,7 @@
 namespace EasyAdWords\Accounts;
 
 use EasyAdWords\Entity;
-use Google\AdsApi\AdWords\v201705\mcm\ManagedCustomerService;
+use Google\AdsApi\AdWords\v201802\mcm\ManagedCustomerService;
 
 class Account extends Entity {
 

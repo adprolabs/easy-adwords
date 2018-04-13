@@ -4,12 +4,12 @@ namespace EasyAdWords\Reports;
 
 use EasyAdWords\AdWordsAuth\AdWordsAuth;
 use EasyAdWords\Base;
-use Google\AdsApi\AdWords\Reporting\v201705\DownloadFormat;
-use Google\AdsApi\AdWords\Reporting\v201705\ReportDefinition;
-use Google\AdsApi\AdWords\Reporting\v201705\ReportDefinitionDateRangeType;
-use Google\AdsApi\AdWords\Reporting\v201705\ReportDownloader;
-use Google\AdsApi\AdWords\v201705\cm\DateRange;
-use Google\AdsApi\AdWords\v201705\cm\Selector;
+use Google\AdsApi\AdWords\Reporting\v201802\DownloadFormat;
+use Google\AdsApi\AdWords\Reporting\v201802\ReportDefinition;
+use Google\AdsApi\AdWords\Reporting\v201802\ReportDefinitionDateRangeType;
+use Google\AdsApi\AdWords\Reporting\v201802\ReportDownloader;
+use Google\AdsApi\AdWords\v201802\cm\DateRange;
+use Google\AdsApi\AdWords\v201802\cm\Selector;
 
 /**
  * Base report class that deals with different report types.

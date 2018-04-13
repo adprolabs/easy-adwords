@@ -5,13 +5,13 @@ namespace EasyAdWords\AdGroups;
 use EasyAdWords\Entity;
 use EasyAdWords\EntityInterface;
 use Exception;
-use Google\AdsApi\AdWords\v201705\cm\AdGroupOperation;
-use Google\AdsApi\AdWords\v201705\cm\AdGroupService;
-use Google\AdsApi\AdWords\v201705\cm\AdGroupStatus;
-use Google\AdsApi\AdWords\v201705\cm\BiddingStrategyConfiguration;
-use Google\AdsApi\AdWords\v201705\cm\CpcBid;
-use Google\AdsApi\AdWords\v201705\cm\Money;
-use Google\AdsApi\AdWords\v201705\cm\Operator;
+use Google\AdsApi\AdWords\v201802\cm\AdGroupOperation;
+use Google\AdsApi\AdWords\v201802\cm\AdGroupService;
+use Google\AdsApi\AdWords\v201802\cm\AdGroupStatus;
+use Google\AdsApi\AdWords\v201802\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201802\cm\CpcBid;
+use Google\AdsApi\AdWords\v201802\cm\Money;
+use Google\AdsApi\AdWords\v201802\cm\Operator;
 
 /**
  * Base class for basic ad group operations.

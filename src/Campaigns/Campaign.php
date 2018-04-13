@@ -7,16 +7,16 @@ use EasyAdWords\Entity;
 use EasyAdWords\EntityInterface;
 use Exception;
 use Google\AdsApi\AdWords\AdWordsServices;
-use Google\AdsApi\AdWords\v201705\cm\BiddingStrategyConfiguration;
-use Google\AdsApi\AdWords\v201705\cm\Budget;
-use Google\AdsApi\AdWords\v201705\cm\BudgetOperation;
-use Google\AdsApi\AdWords\v201705\cm\BudgetService;
-use Google\AdsApi\AdWords\v201705\cm\CampaignOperation;
-use Google\AdsApi\AdWords\v201705\cm\CampaignService;
-use Google\AdsApi\AdWords\v201705\cm\CampaignStatus;
-use Google\AdsApi\AdWords\v201705\cm\Money;
-use Google\AdsApi\AdWords\v201705\cm\NetworkSetting;
-use Google\AdsApi\AdWords\v201705\cm\Operator;
+use Google\AdsApi\AdWords\v201802\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201802\cm\Budget;
+use Google\AdsApi\AdWords\v201802\cm\BudgetOperation;
+use Google\AdsApi\AdWords\v201802\cm\BudgetService;
+use Google\AdsApi\AdWords\v201802\cm\CampaignOperation;
+use Google\AdsApi\AdWords\v201802\cm\CampaignService;
+use Google\AdsApi\AdWords\v201802\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201802\cm\Money;
+use Google\AdsApi\AdWords\v201802\cm\NetworkSetting;
+use Google\AdsApi\AdWords\v201802\cm\Operator;
 
 /**
  * Base class for basic campaign operations.

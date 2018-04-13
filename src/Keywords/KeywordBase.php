@@ -5,13 +5,13 @@ namespace EasyAdWords\Keywords;
 use EasyAdWords\Config;
 use EasyAdWords\Entity;
 use Exception;
-use Google\AdsApi\AdWords\v201705\cm\AdGroupCriterionOperation;
-use Google\AdsApi\AdWords\v201705\cm\AdGroupCriterionService;
-use Google\AdsApi\AdWords\v201705\cm\BiddableAdGroupCriterion;
-use Google\AdsApi\AdWords\v201705\cm\BiddingStrategyConfiguration;
-use Google\AdsApi\AdWords\v201705\cm\CpcBid;
-use Google\AdsApi\AdWords\v201705\cm\Money;
-use Google\AdsApi\AdWords\v201705\cm\Operator;
+use Google\AdsApi\AdWords\v201802\cm\AdGroupCriterionOperation;
+use Google\AdsApi\AdWords\v201802\cm\AdGroupCriterionService;
+use Google\AdsApi\AdWords\v201802\cm\BiddableAdGroupCriterion;
+use Google\AdsApi\AdWords\v201802\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201802\cm\CpcBid;
+use Google\AdsApi\AdWords\v201802\cm\Money;
+use Google\AdsApi\AdWords\v201802\cm\Operator;
 
 /**
  * Base class for Keyword and KeywordBatch classes.

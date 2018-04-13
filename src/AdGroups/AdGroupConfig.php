@@ -4,7 +4,7 @@ namespace EasyAdWords\AdGroups;
 
 use EasyAdWords\Config;
 use Exception;
-use Google\AdsApi\AdWords\v201705\cm\AdGroupStatus;
+use Google\AdsApi\AdWords\v201802\cm\AdGroupStatus;
 
 
 /**
