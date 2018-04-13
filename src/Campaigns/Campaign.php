@@ -7,16 +7,16 @@ use EasyAdWords\Entity;
 use EasyAdWords\EntityInterface;
 use Exception;
 use Google\AdsApi\AdWords\AdWordsServices;
-use Google\AdsApi\AdWords\v201705\cm\BiddingStrategyConfiguration;
-use Google\AdsApi\AdWords\v201705\cm\Budget;
-use Google\AdsApi\AdWords\v201705\cm\BudgetOperation;
-use Google\AdsApi\AdWords\v201705\cm\BudgetService;
-use Google\AdsApi\AdWords\v201705\cm\CampaignOperation;
-use Google\AdsApi\AdWords\v201705\cm\CampaignService;
-use Google\AdsApi\AdWords\v201705\cm\CampaignStatus;
-use Google\AdsApi\AdWords\v201705\cm\Money;
-use Google\AdsApi\AdWords\v201705\cm\NetworkSetting;
-use Google\AdsApi\AdWords\v201705\cm\Operator;
+use Google\AdsApi\AdWords\v201802\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201802\cm\Budget;
+use Google\AdsApi\AdWords\v201802\cm\BudgetOperation;
+use Google\AdsApi\AdWords\v201802\cm\BudgetService;
+use Google\AdsApi\AdWords\v201802\cm\CampaignOperation;
+use Google\AdsApi\AdWords\v201802\cm\CampaignService;
+use Google\AdsApi\AdWords\v201802\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201802\cm\Money;
+use Google\AdsApi\AdWords\v201802\cm\NetworkSetting;
+use Google\AdsApi\AdWords\v201802\cm\Operator;
 
 /**
  * Base class for basic campaign operations.
@@ -28,7 +28,7 @@ use Google\AdsApi\AdWords\v201705\cm\Operator;
 class Campaign extends Entity implements EntityInterface {
 
     /**
-     * @var \Google\AdsApi\AdWords\v201705\cm\Campaign  The campaign object that will be used in operations.
+     * @var \Google\AdsApi\AdWords\v201802\cm\Campaign  The campaign object that will be used in operations.
      */
     protected $campaignObject;
 
@@ -61,7 +61,7 @@ class Campaign extends Entity implements EntityInterface {
         $this->campaignService = $this->adWordsServices->get($this->authObject->getSession(), CampaignService::class);
 
         // Build the singular campaign object.
-        $this->campaignObject = new \Google\AdsApi\AdWords\v201705\cm\Campaign();
+        $this->campaignObject = new \Google\AdsApi\AdWords\v201802\cm\Campaign();
         $this->campaigns = NULL;
     }
 
@@ -239,7 +239,7 @@ class Campaign extends Entity implements EntityInterface {
 
     /**
      * Get campaign object.
-     * @return \Google\AdsApi\AdWords\v201705\cm\Campaign
+     * @return \Google\AdsApi\AdWords\v201802\cm\Campaign
      */
     public function getCampaignObject() {
         return $this->campaignObject;
@@ -247,7 +247,7 @@ class Campaign extends Entity implements EntityInterface {
 
     /**
      * Set campaign object.
-     * @param \Google\AdsApi\AdWords\v201705\cm\Campaign $campaignObject
+     * @param \Google\AdsApi\AdWords\v201802\cm\Campaign $campaignObject
      * @return Campaign
      */
     public function setCampaignObject($campaignObject) {

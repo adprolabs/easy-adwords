@@ -3,14 +3,14 @@
 namespace EasyAdWords\Campaigns;
 
 use EasyAdWords\Config;
-use Google\AdsApi\AdWords\v201705\cm\AdServingOptimizationStatus;
-use Google\AdsApi\AdWords\v201705\cm\AdvertisingChannelType;
-use Google\AdsApi\AdWords\v201705\cm\BiddingStrategyType;
-use Google\AdsApi\AdWords\v201705\cm\BudgetBudgetDeliveryMethod;
-use Google\AdsApi\AdWords\v201705\cm\CampaignStatus;
-use Google\AdsApi\AdWords\v201705\cm\Predicate;
-use Google\AdsApi\AdWords\v201705\cm\PredicateOperator;
-use Google\AdsApi\AdWords\v201705\cm\ServingStatus;
+use Google\AdsApi\AdWords\v201802\cm\AdServingOptimizationStatus;
+use Google\AdsApi\AdWords\v201802\cm\AdvertisingChannelType;
+use Google\AdsApi\AdWords\v201802\cm\BiddingStrategyType;
+use Google\AdsApi\AdWords\v201802\cm\BudgetBudgetDeliveryMethod;
+use Google\AdsApi\AdWords\v201802\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201802\cm\Predicate;
+use Google\AdsApi\AdWords\v201802\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201802\cm\ServingStatus;
 
 /**
  * Config class for Campaign class.
