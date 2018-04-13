@@ -40,7 +40,7 @@ class AdGroup extends Entity implements EntityInterface {
     protected $adGroupService;
 
     /**
-     * @var \Google\AdsApi\AdWords\v201705\cm\AdGroup The ad group object that the class will operate with.
+     * @var \Google\AdsApi\AdWords\v201802\cm\AdGroup The ad group object that the class will operate with.
      */
     protected $adGroupObject;
 
@@ -55,7 +55,7 @@ class AdGroup extends Entity implements EntityInterface {
 
         // Build the ad group service.
         $this->adGroupService = $this->adWordsServices->get($this->authObject->getSession(), AdGroupService::class);
-        $this->adGroupObject = new \Google\AdsApi\AdWords\v201705\cm\AdGroup();
+        $this->adGroupObject = new \Google\AdsApi\AdWords\v201802\cm\AdGroup();
         $this->adGroups = NULL;
     }
 

@@ -49,7 +49,7 @@ class KeywordBase extends Entity {
     public function createKeywordOperation(KeywordConfig $config) {
 
         // Create the criterion object.
-        $adGroupCriterionObject = new \Google\AdsApi\AdWords\v201705\cm\Keyword();
+        $adGroupCriterionObject = new \Google\AdsApi\AdWords\v201802\cm\Keyword();
 
         // Set the text and the match types of the criterion object.
         $adGroupCriterionObject->setText($config->getKeyword());
